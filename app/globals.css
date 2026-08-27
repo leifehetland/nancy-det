@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --max-w: 1200px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-slate-body antialiased;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-5 sm:px-8;
+  }
+
+  /* --- Buttons ------------------------------------------------------- */
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand px-6 py-3
+           text-sm font-bold uppercase tracking-wide text-white shadow-sm
+           transition-colors hover:bg-brand-dark
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+           focus-visible:outline-brand;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-mist-line
+           bg-mist-light px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink
+           transition-colors hover:bg-mist
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+           focus-visible:outline-ink;
+  }
+
+  .btn-block {
+    @apply w-full;
+  }
+
+  /* --- Typography ---------------------------------------------------- */
+
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.18em] text-brand;
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-extrabold leading-tight tracking-tight text-ink sm:text-4xl;
+  }
+
+  .prose-body {
+    @apply text-base leading-relaxed text-slate-body;
+  }
+
+  /* Short red rule that sits under a section heading. */
+  .rule-accent::after {
+    content: "";
+    @apply mt-4 block h-[3px] w-full max-w-[560px] bg-brand;
+  }
+
+  .rule-accent-center::after {
+    content: "";
+    @apply mx-auto mt-4 block h-[3px] w-16 bg-brand;
+  }
+
+  /* --- Surfaces ------------------------------------------------------ */
+
+  .card {
+    @apply rounded-xl border border-mist-line bg-mist-light p-6;
+  }
+
+  .card-dark {
+    @apply rounded-xl bg-ink p-7 text-white shadow-lift;
+  }
+
+  .chip {
+    @apply flex items-center justify-center rounded-md border border-mist-line bg-white
+           px-3 py-3 text-center text-sm font-bold text-ink;
+  }
+
+  .icon-tile {
+    @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-tint text-brand;
+  }
+
+  .pill-badge {
+    @apply inline-flex items-center gap-2 rounded-md bg-brand-wash px-3 py-2
+           text-xs font-bold uppercase tracking-[0.14em] text-brand;
+  }
+}
