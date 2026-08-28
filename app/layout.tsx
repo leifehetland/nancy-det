@@ -14,7 +14,7 @@ const archivo = Archivo({
   display: "swap",
 });
 
-const siteUrl = "https://davisexecutivetraining.com";
+const siteUrl = "https://www.nancydavisexecutivetraining.com";
 const title = `${site.name} — Build Success, Manage Better, Sell More`;
 const description =
   "Executive Communication & Presentation Workshops. Control anxiety, refine persuasive delivery, and use video feedback in highly structured small-group workshops.";

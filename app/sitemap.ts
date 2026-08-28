@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { memorial, nav } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://davisexecutivetraining.com";
+  const base = "https://www.nancydavisexecutivetraining.com";
 
   // The memorial lives in the footer rather than the top nav, so it is added
   // here explicitly instead of coming through nav[].

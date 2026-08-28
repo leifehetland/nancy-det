@@ -69,6 +69,15 @@ Two editorial decisions worth knowing about, both reversible:
 The About page now leads with Nancy as the person running the company, with Moe
 second and in past tense.
 
+## Fact-checking note
+
+Everything in `lib/site.ts` has been checked against davisexecutivetraining.com
+and outside sources. Program descriptions, benefits lists, the client roster,
+all four testimonials, the mission statement and the founder bios are from the
+live site. Details invented by the design reference — contact information, an
+"Atlanta & Birmingham" headquarters, a 24-hour response guarantee — have been
+removed. See the comment blocks in `lib/site.ts` for the specifics.
+
 ## Design system
 
 Layout and component architecture follow the James Williams, LLC project
@@ -89,10 +98,22 @@ Reusable classes are defined in `app/globals.css`: `.container-x`, `.btn-primary
 
 ## Before launch
 
-1. **Contact details** — `site.phone`, `site.email`, `site.locations` and
-   `site.hq` in `lib/site.ts` are placeholders taken from the design reference.
-   The live site publishes its phone number as an image, so it could not be read.
-   Replace all four with Nancy's real details.
+1. **Contact details** — `site.email` is set to
+   `nancy@nancydavisexecutivetraining.com`. `site.phone`, `site.locations`,
+   `site.hq` and `site.hours` are still `null`. The design reference's values for those
+   were fabricated, so they were removed rather than shipped. Everything
+   that renders them is conditional, so the site simply omits those lines until
+   real values are filled in — it never prints a placeholder. Until then the
+   inquiry form is the only contact path, which is how the current
+   davisexecutivetraining.com works too.
+
+   Leads to verify with Nancy, none of them published:
+   - An unclaimed Manta listing gives 7118 Lake Run Circle, Vestavia, AL 35242
+     and (205) 915-0630. Looks like a home address — get explicit permission
+     before putting either on a public page.
+   - The old site's phone lives only inside an image with no alt text
+     (`DET-call-300x227.png`), so it can't be read programmatically.
+   - Birmingham is **Central** time, not Eastern.
 2. **Contact form** — `components/ContactForm.tsx` shows a confirmation state but
    does not submit anywhere. Point `handleSubmit` at a real endpoint.
 3. **Images** — every photo slot renders `components/Placeholder.tsx`, a labeled

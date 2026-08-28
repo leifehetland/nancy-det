@@ -60,23 +60,33 @@ export default function Footer() {
           <h2 className="border-b border-white/15 pb-3 font-display text-sm font-extrabold uppercase tracking-[0.12em] text-white">
             {footer.touchHeading}
           </h2>
+          {/* Each row appears only once its value is filled in lib/site.ts. */}
           <ul className="mt-4 space-y-4 text-sm">
-            <li className="flex gap-3">
-              <Icon.pin className="mt-0.5 shrink-0 text-base text-brand" />
-              <span className="text-white/80">{site.hq}</span>
-            </li>
-            <li className="flex gap-3">
-              <Icon.phone className="mt-0.5 shrink-0 text-base text-brand" />
-              <a href={site.phoneHref} className="text-white/80 hover:text-white">
-                {site.phone}
-              </a>
-            </li>
-            <li className="flex gap-3">
-              <Icon.mail className="mt-0.5 shrink-0 text-base text-brand" />
-              <a href={site.emailHref} className="break-all text-white/80 hover:text-white">
-                {site.email}
-              </a>
-            </li>
+            {site.hq && (
+              <li className="flex gap-3">
+                <Icon.pin className="mt-0.5 shrink-0 text-base text-brand" />
+                <span className="text-white/80">{site.hq}</span>
+              </li>
+            )}
+            {site.phone && site.phoneHref && (
+              <li className="flex gap-3">
+                <Icon.phone className="mt-0.5 shrink-0 text-base text-brand" />
+                <a href={site.phoneHref} className="text-white/80 hover:text-white">
+                  {site.phone}
+                </a>
+              </li>
+            )}
+            {site.email && site.emailHref && (
+              <li className="flex gap-3">
+                <Icon.mail className="mt-0.5 shrink-0 text-base text-brand" />
+                {/* <wbr /> after the @ gives the browser a sensible break point,
+                    so a long address wraps by domain instead of mid-word. */}
+                <a href={site.emailHref} className="text-white/80 hover:text-white">
+                  {site.email.split("@")[0]}@<wbr />
+                  {site.email.split("@")[1]}
+                </a>
+              </li>
+            )}
           </ul>
           <Link href={footer.cta.href} className="btn-primary btn-block mt-6">
             {footer.cta.label}

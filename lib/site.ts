@@ -8,6 +8,23 @@
 // design reference. Swap them for Nancy's real contact details before launch.
 // ---------------------------------------------------------------------------
 
+// Contact details.
+//
+// VERIFY BEFORE LAUNCH. The email is confirmed. The values still marked `null`
+// were fabricated by the design reference and were removed rather than shipped. Anything rendered from
+// these fields is conditional, so the site degrades cleanly while they are null
+// — it simply omits the line instead of printing a placeholder.
+//
+// What we know:
+//   - The old site (davisexecutivetraining.com) publishes NO phone, email or
+//     address in text anywhere. Its contact page is form-only, and the phone
+//     appears solely inside an image (DET-call-300x227.png) with no alt text,
+//     so it is not machine-readable.
+//   - An unclaimed Manta listing shows "7118 Lake Run Circle, Vestavia, AL
+//     35242 / (205) 915-0630". Unverified, and it looks like a home address —
+//     do not publish it without Nancy's explicit say-so.
+//   - The business is in the Birmingham, AL area. Note that is CENTRAL time,
+//     not Eastern.
 export const site = {
   name: "Davis Executive Training",
   shortName: "DET",
@@ -15,13 +32,26 @@ export const site = {
   subTagline: "Public Speaking & Leadership Mastery",
   bannerLead: "Executive Communication & Presentation Workshops",
   bannerAccent: "Build Success, Manage Better, Sell More",
-  phone: "(800) 555-DET1",
-  phoneHref: "tel:1-800-555-3381",
-  email: "info@davisexecutivetraining.com",
-  emailHref: "mailto:info@davisexecutivetraining.com",
-  locations: "Atlanta, GA & Birmingham, AL Regional Training Facilities",
-  hq: "Headquarters: Atlanta & Birmingham Corporate Training Centers",
-  hours: "Monday - Friday: 8:00 AM – 6:00 PM EST",
+
+  // TODO: real number. Was "(800) 555-DET1" — a fabricated 555 number.
+  phone: null as string | null,
+  phoneHref: null as string | null,
+
+  // Confirmed by Nancy's team, Aug 2026.
+  email: "nancy@nancydavisexecutivetraining.com" as string | null,
+  emailHref: "mailto:nancy@nancydavisexecutivetraining.com" as string | null,
+
+  // TODO: confirm with Nancy what she wants published, if anything.
+  // Was "Atlanta, GA & Birmingham, AL Regional Training Facilities" —
+  // fabricated. Atlanta has no basis; the "Atlanta, GA" on the old site is a
+  // client's location in a testimonial, not a DET office.
+  locations: null as string | null,
+  hq: null as string | null,
+
+  // TODO: confirm. Was "Monday - Friday: 8:00 AM – 6:00 PM EST" — fabricated,
+  // and the timezone was wrong for Birmingham regardless.
+  hours: null as string | null,
+
   description:
     "Davis Executive Training empowers executives, managers, and sales professionals with powerful face-to-face communication, public speaking, and presentation skills.",
 };
@@ -50,7 +80,7 @@ export const home = {
   secondaryCta: { label: "Explore Workshops", href: "/training" },
   heroCaption: {
     title: "Interactive Workshops & Video Coaching",
-    text: "Small group formats with constructive feedback from industry experts.",
+    text: "Small group format with constructive feedback and individual coaching.",
   },
 };
 
@@ -510,10 +540,15 @@ export const contact = {
       "No Program Yet",
     ],
   },
-  hqHeading: "Corporate Headquarters",
+  // Neutral heading: the panel shows only whatever contact fields are filled in,
+  // so it must read correctly with one row or four.
+  hqHeading: "Get In Touch",
+  // NOTE: the design reference promised a reply "within 24 business hours".
+  // That was invented, and it is a commitment Nancy would have to keep, so it
+  // has been softened. Restore the specific number only if she wants to make it.
   guarantee: {
-    heading: "Quick Response Guarantee",
-    text: "We respond to all corporate training inquiries within 24 business hours to help you coordinate schedules and syllabus options.",
+    heading: "What Happens Next",
+    text: "Tell us about your team and what you want the training to fix. We will follow up to talk through group size, format and scheduling.",
   },
 };
 

@@ -58,11 +58,11 @@ export default function Logo({
     <Link
       href="/"
       aria-label="Davis Executive Training home"
-      className="flex shrink-0 items-center gap-4"
+      className="flex shrink-0 items-center gap-3 2xl:gap-4"
     >
-      <Wordmark priority className="h-auto w-48 sm:w-56 lg:w-64" />
-      <span className="hidden h-12 w-px bg-mist-line sm:block" />
-      <span className="hidden leading-tight sm:block">
+      <Wordmark priority className="h-auto w-44 sm:w-56 xl:w-52 2xl:w-60" />
+      <span className="hidden h-12 w-px bg-mist-line sm:block xl:hidden 2xl:block" />
+      <span className="hidden leading-tight sm:block xl:hidden 2xl:block">
         <span className="block font-display text-base font-extrabold text-ink">
           Improve Job
           <br />

@@ -10,12 +10,15 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  // Only rows with a real value are shown, so the panel never prints a
+  // placeholder. While these are all null the form is the sole contact path —
+  // which is exactly how the current davisexecutivetraining.com works.
   const details = [
-    { icon: Icon.pin, title: "Locations", value: site.locations, href: undefined },
-    { icon: Icon.phone, title: "Toll-Free Phone", value: site.phone, href: site.phoneHref },
-    { icon: Icon.mail, title: "Email Address", value: site.email, href: site.emailHref },
-    { icon: Icon.clock, title: "Hours of Operation", value: site.hours, href: undefined },
-  ];
+    { icon: Icon.pin, title: "Location", value: site.locations, href: undefined },
+    { icon: Icon.phone, title: "Phone", value: site.phone, href: site.phoneHref ?? undefined },
+    { icon: Icon.mail, title: "Email", value: site.email, href: site.emailHref ?? undefined },
+    { icon: Icon.clock, title: "Hours", value: site.hours, href: undefined },
+  ].filter((d): d is typeof d & { value: string } => Boolean(d.value));
 
   return (
     <>
@@ -34,6 +37,7 @@ export default function ContactPage() {
           </div>
 
           <aside className="space-y-6 lg:col-span-2">
+            {details.length > 0 && (
             <div className="card-dark p-8">
               <h2 className="border-b border-white/15 pb-4 font-display text-lg font-extrabold">
                 {contact.hqHeading}
@@ -58,6 +62,7 @@ export default function ContactPage() {
                 ))}
               </dl>
             </div>
+            )}
 
             <div className="rounded-xl bg-brand-wash p-7">
               <h2 className="font-display text-sm font-extrabold uppercase tracking-[0.12em] text-brand">

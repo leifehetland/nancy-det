@@ -23,18 +23,26 @@ export default function Header() {
             {site.bannerLead} —{" "}
             <span className="text-brand-light">{site.bannerAccent}</span>
           </p>
+          {/* Rendered only once real contact details exist in lib/site.ts. */}
           <div className="flex items-center gap-5">
-            <a href={site.phoneHref} className="flex items-center gap-1.5 hover:text-brand-light">
-              <Icon.phone className="text-brand-light" />
-              {site.phone}
-            </a>
-            <a
-              href={site.emailHref}
-              className="hidden items-center gap-1.5 hover:text-brand-light sm:flex"
-            >
-              <Icon.mail className="text-brand-light" />
-              {site.email}
-            </a>
+            {site.phone && site.phoneHref && (
+              <a href={site.phoneHref} className="flex items-center gap-1.5 hover:text-brand-light">
+                <Icon.phone className="text-brand-light" />
+                {site.phone}
+              </a>
+            )}
+            {site.email && site.emailHref && (
+              <a
+                href={site.emailHref}
+                className="hidden items-center gap-1.5 hover:text-brand-light sm:flex"
+              >
+                <Icon.mail className="text-brand-light" />
+                {site.email}
+              </a>
+            )}
+            <Link href="/contact" className="font-semibold hover:text-brand-light">
+              Contact Us
+            </Link>
           </div>
         </div>
       </div>
@@ -44,7 +52,9 @@ export default function Header() {
         <div className="container-x flex items-center justify-between gap-6 py-3">
           <Logo />
 
-          <nav className="hidden items-center gap-1 xl:flex">
+          {/* whitespace-nowrap keeps each label on one line; the sizes below are
+              tuned so all six items plus the CTA fit at the xl breakpoint. */}
+          <nav className="hidden items-center gap-0.5 xl:flex">
             {nav.map((item) => {
               const active = isActive(item.href);
               return (
@@ -53,17 +63,22 @@ export default function Header() {
                   href={item.href}
                   aria-current={active ? "page" : undefined}
                   className={[
-                    "rounded-md px-3 py-2 text-sm font-bold leading-tight transition-colors",
+                    "relative whitespace-nowrap rounded-md px-2.5 py-2 text-[13px] font-bold",
+                    "transition-colors 2xl:px-3 2xl:text-sm",
+                    // The active marker is a positioned bar rather than
+                    // text-decoration, so it stays a single clean rule.
+                    "after:absolute after:inset-x-2.5 after:-bottom-0.5 after:h-[2px]",
+                    "after:rounded-full after:transition-colors 2xl:after:inset-x-3",
                     active
-                      ? "bg-brand-wash text-brand underline decoration-brand decoration-2 underline-offset-[6px]"
-                      : "text-ink hover:text-brand",
+                      ? "bg-brand-wash text-brand after:bg-brand"
+                      : "text-ink after:bg-transparent hover:text-brand hover:after:bg-brand/30",
                   ].join(" ")}
                 >
                   {item.label}
                 </Link>
               );
             })}
-            <Link href="/contact" className="btn-primary ml-3 px-5 py-2.5">
+            <Link href="/contact" className="btn-primary ml-2.5 whitespace-nowrap px-4 py-2.5 2xl:px-5">
               Sign Up
               <Icon.chevron />
             </Link>
