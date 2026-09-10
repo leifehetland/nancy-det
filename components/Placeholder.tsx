@@ -1,23 +1,46 @@
+import Image from "next/image";
+
 /**
- * Photo placeholder.
+ * Image slot.
  *
- * The design calls for photography that we don't have licensed assets for yet.
- * Rather than ship broken <img> tags, each photo slot renders this: a tinted
- * panel that holds the correct aspect ratio and names the shot that belongs
- * there. Replace a slot by swapping this component for next/image.
+ * With `src`, renders the real photograph. Without one, renders a tinted panel
+ * that holds the correct aspect ratio and names the shot that belongs there —
+ * so an unfilled slot reads as deliberate rather than broken.
+ *
+ * `src` accepts a local path under /public or an images.unsplash.com URL
+ * (allowed in next.config.mjs).
  */
 export default function Placeholder({
   label,
+  src,
   className = "",
   tone = "light",
   rounded = "rounded-xl",
+  priority = false,
 }: {
   label: string;
+  src?: string | null;
   className?: string;
   tone?: "light" | "dark";
   rounded?: string;
+  priority?: boolean;
 }) {
   const dark = tone === "dark";
+
+  if (src) {
+    return (
+      <div className={["relative overflow-hidden", rounded, className].join(" ")}>
+        <Image
+          src={src}
+          alt={label}
+          fill
+          priority={priority}
+          sizes="(max-width: 768px) 100vw, 600px"
+          className="object-cover"
+        />
+      </div>
+    );
+  }
 
   return (
     <div
@@ -30,7 +53,6 @@ export default function Placeholder({
         className,
       ].join(" ")}
     >
-      {/* Diagonal hatch so the slot reads as intentionally empty, not broken. */}
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-[0.5]"

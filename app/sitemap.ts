@@ -1,17 +1,18 @@
 import type { MetadataRoute } from "next";
-import { memorial, nav } from "@/lib/site";
+import { memorial } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://www.nancydavisexecutivetraining.com";
 
-  // The memorial lives in the footer rather than the top nav, so it is added
-  // here explicitly instead of coming through nav[].
-  const routes = [...nav.map((i) => i.href), memorial.href];
-
-  return routes.map((href) => ({
-    url: `${base}${href === "/" ? "" : href}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: href === "/" ? 1 : href === memorial.href ? 0.4 : 0.8,
-  }));
+  // The marketing site is a single page; nav entries are in-page anchors, so
+  // only two real routes exist.
+  return [
+    { url: base, lastModified: new Date(), changeFrequency: "monthly", priority: 1 },
+    {
+      url: `${base}${memorial.href}`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
+  ];
 }

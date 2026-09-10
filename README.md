@@ -10,32 +10,70 @@ npm run build   # production build
 
 ## Structure
 
+The marketing site is a **single-page brochure**. `/in-memoriam` is the only
+other page.
+
 ```
 app/
   layout.tsx              Root layout: fonts, metadata, Header + Footer
-  globals.css             Tailwind layers + the component classes below
-  page.tsx                Home
-  training/               Training overview hub
-  executive-training/     The three program options
-  financial-services/     Planners/Brokers/Agents + Wholesaler Commando Training
-  about/                  Company, mission, founder bios
-  contact/                Inquiry form + HQ details
+  globals.css             Tailwind layers + shared component classes
+  page.tsx                The whole brochure, section by section
+  in-memoriam/            Memorial for Moe Davis
+  api/inquiry/            Route handler that emails the contact form
   sitemap.ts, robots.ts
 components/
-  Header, Footer, PageHero, Logo, Icons, Placeholder, SectionHeading, ContactForm
+  Header, Footer, Logo, Icons, Placeholder, SectionHeading, ContactForm
 lib/
   site.ts                 ALL site copy
+  inquiry.ts              Form validation shared by client and server
+  mailer.ts               Outbound mail adapter
 ```
 
-## Editing copy
+Page sections, in order: hero, approach, programs, students & schools,
+Ducks Unlimited, clients, testimonials, about Nancy, contact. The header nav
+links are in-page anchors; the active one is tracked with an
+IntersectionObserver.
 
-Every string on the site lives in `lib/site.ts` — no page or component contains
-hard-coded copy. To reword anything, edit that file only.
+## September 2026 revision
 
-Copy follows **davisexecutivetraining.com**, which is the authoritative source.
-Program descriptions on the Executive Training and Financial Services pages, the
-benefits lists, the mission statement, the client roster and all four
-testimonials are verbatim from the live site.
+Per Nancy:
+
+- **Financial services training removed entirely** — her license is not being
+  renewed and the CEU credits have lapsed. The page, nav entry, program copy
+  and the financial institutions grid are all gone.
+- **Open enrollment removed.** Not offered.
+- **"Video feedback" retired.** It is now "Private Session Recordings" — the
+  sessions are recorded, kept private to the participant, and available to
+  review at leisure for further coaching.
+- **In-house workshops and 1:1 coaching lead the Programs section**, both
+  visually featured; seminars follow.
+- **Students & schools got its own section** covering elementary, middle/high
+  and college, framed around wanting more of that work.
+- **Ducks Unlimited** has its own full-width section. **Name only — no logo or
+  brand mark.** Using their trademark requires written permission from Ducks
+  Unlimited. If Nancy obtains it, the section is built to take a logo without a
+  redesign.
+- **New hero**, built on Nancy's quote and attributed to her, replacing
+  "Build Success / Manage Better, Sell More".
+- **Nancy leads the About section.** Moe is acknowledged in a short block that
+  links to the memorial page.
+- **Minimalist pass**: the top utility bar is gone, most card borders were
+  removed in favour of whitespace and rules, and red is used as an accent
+  rather than a fill.
+
+## Images
+
+Both image slots take a `src` in `lib/site.ts` (`hero.image`, `about.image`).
+`components/Placeholder.tsx` renders the photo when a src is present and a
+labelled panel when it is not, so unfilled slots read as deliberate.
+
+`next.config.mjs` allows `images.unsplash.com`, so an Unsplash URL can be
+pasted straight in while choosing photography. **For production, download the
+chosen files into `public/images/` and reference them locally** — it removes a
+third-party dependency from page load and survives a photo being removed.
+
+**`about.image` must be a real photograph of Nancy.** Do not put stock
+photography in a slot labelled with a real person's name.
 
 ## In Memoriam page
 

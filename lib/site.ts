@@ -1,167 +1,254 @@
 // ---------------------------------------------------------------------------
 // Davis Executive Training — single source of truth for all site copy.
 //
-// Every string rendered anywhere in the app lives here. To revise wording,
-// edit this file only; no page or component holds hard-coded copy.
+// The site is a one-page brochure. Every section below maps to one block of
+// app/page.tsx, in order. The memorial at /in-memoriam is the only other page.
 //
-// NOTE: `phone` and `email` below are placeholders carried over from the
-// design reference. Swap them for Nancy's real contact details before launch.
+// Copy follows davisexecutivetraining.com where it still applies, revised per
+// Nancy's notes (Sept 2026). Removed in that pass, deliberately:
+//   - Financial services training, in full. Her license is not being renewed
+//     and the CEU credits have lapsed.
+//   - Open enrollment workshops. Not offered.
+//   - The phrase "video feedback", replaced throughout by private session
+//     recordings, which is what it actually is.
 // ---------------------------------------------------------------------------
 
 // Contact details.
 //
 // VERIFY BEFORE LAUNCH. The email is confirmed. The values still marked `null`
-// were fabricated by the design reference and were removed rather than shipped. Anything rendered from
-// these fields is conditional, so the site degrades cleanly while they are null
-// — it simply omits the line instead of printing a placeholder.
-//
-// What we know:
-//   - The old site (davisexecutivetraining.com) publishes NO phone, email or
-//     address in text anywhere. Its contact page is form-only, and the phone
-//     appears solely inside an image (DET-call-300x227.png) with no alt text,
-//     so it is not machine-readable.
-//   - An unclaimed Manta listing shows "7118 Lake Run Circle, Vestavia, AL
-//     35242 / (205) 915-0630". Unverified, and it looks like a home address —
-//     do not publish it without Nancy's explicit say-so.
-//   - The business is in the Birmingham, AL area. Note that is CENTRAL time,
-//     not Eastern.
+// were fabricated by the original design reference and were removed rather than
+// shipped. Everything that renders them is conditional, so the site omits those
+// lines instead of printing a placeholder.
 export const site = {
   name: "Davis Executive Training",
   shortName: "DET",
   tagline: "Improve Job Performance",
   subTagline: "Public Speaking & Leadership Mastery",
-  bannerLead: "Executive Communication & Presentation Workshops",
-  bannerAccent: "Build Success, Manage Better, Sell More",
 
   // TODO: real number. Was "(800) 555-DET1" — a fabricated 555 number.
   phone: null as string | null,
   phoneHref: null as string | null,
 
-  // Confirmed by Nancy's team, Aug 2026.
   email: "nancy@nancydavisexecutivetraining.com" as string | null,
   emailHref: "mailto:nancy@nancydavisexecutivetraining.com" as string | null,
 
-  // TODO: confirm with Nancy what she wants published, if anything.
-  // Was "Atlanta, GA & Birmingham, AL Regional Training Facilities" —
-  // fabricated. Atlanta has no basis; the "Atlanta, GA" on the old site is a
-  // client's location in a testimonial, not a DET office.
+  // TODO: confirm what Nancy wants published, if anything. An unclaimed Manta
+  // listing suggests a Vestavia Hills, AL address, but it looks residential —
+  // do not publish without her explicit say-so.
   locations: null as string | null,
   hq: null as string | null,
-
-  // TODO: confirm. Was "Monday - Friday: 8:00 AM – 6:00 PM EST" — fabricated,
-  // and the timezone was wrong for Birmingham regardless.
   hours: null as string | null,
 
   description:
-    "Davis Executive Training empowers executives, managers, and sales professionals with powerful face-to-face communication, public speaking, and presentation skills.",
+    "Davis Executive Training helps executives, managers, sales professionals and students speak with clarity, confidence and presence.",
 };
 
+/** Anchor targets on the one-page site. Order matches the page. */
 export const nav = [
-  { label: "DET Home", href: "/" },
-  { label: "Training", href: "/training" },
-  { label: "Executive Training", href: "/executive-training" },
-  { label: "Financial Services", href: "/financial-services" },
-  { label: "About Us", href: "/about" },
-  { label: "Contact Us", href: "/contact" },
+  { label: "Approach", href: "#approach" },
+  { label: "Programs", href: "#programs" },
+  { label: "Students", href: "#students" },
+  { label: "About", href: "#about" },
+  { label: "Contact", href: "#contact" },
 ];
 
 // ---------------------------------------------------------------------------
-// Home
+// 1. Hero
 // ---------------------------------------------------------------------------
 
-export const home = {
-  eyebrow: "Executive Communication Mastery",
-  titleLead: "Build",
-  titleAccent: "Success",
-  subtitle: "Manage Better, Sell More",
+export const hero = {
+  eyebrow: "Executive Communication & Presentation Training",
+  quote:
+    "We judge ourselves by our intentions, do we not? We judge others by their actions! What we see and what we hear is all we have to go on. It is what determines how we are perceived!",
+  attribution: "Nancy Davis",
+  attributionRole: "Founder, Davis Executive Training",
   intro:
-    "The ability to think on one's feet is perhaps the major distinguishing characteristic of fast-track performers in today's competitive, communication-conscious environment!",
-  primaryCta: { label: "Contact Us Today To Learn More", href: "/contact" },
-  secondaryCta: { label: "Explore Workshops", href: "/training" },
-  heroCaption: {
-    title: "Interactive Workshops & Video Coaching",
-    text: "Small group format with constructive feedback and individual coaching.",
-  },
+    "The ability to think on one's feet is perhaps the major distinguishing characteristic of fast-track performers in today's competitive, communication conscious environment.",
+  primaryCta: { label: "Start a Conversation", href: "#contact" },
+  secondaryCta: { label: "See the Programs", href: "#programs" },
+  // Drop an /images/... path or an images.unsplash.com URL here to fill the
+  // slot. Stock photography is fine for this one — it is a generic scene.
+  image: null as string | null,
+  imageAlt: "A speaker addressing a small group of professionals",
 };
 
-export const howWeHelp = {
-  heading: "How We Help",
+// ---------------------------------------------------------------------------
+// 2. Approach
+// ---------------------------------------------------------------------------
+
+export const approach = {
+  eyebrow: "The Approach",
+  heading: "Small groups. Real practice. Skills you use the next day.",
   intro:
-    "Proven core training methodologies designed to yield immediate workplace performance results.",
+    "A major portion of your effectiveness lies in your ability to inform, influence, persuade and motivate. That is a set of skills, and skills can be taught.",
   items: [
     {
-      icon: "award" as const,
-      title: "Learn",
-      text: "We teach techniques to control anxiety. You will speak effectively before any size group. Learn powerful communication skills you can hit the ground running with immediately!",
+      icon: "users" as const,
+      title: "Small Group Format",
+      text: "Groups stay small enough that everyone stands up, presents more than once, and gets constructive feedback in the room — not a lecture you sit through.",
     },
     {
-      icon: "trend" as const,
-      title: "Sharpen Skills",
-      text: "In challenging economies, it is very important for companies to provide training that will sharpen the skills of their managers and sales executives. “Outperform your competitors!”",
+      icon: "mic" as const,
+      title: "Control Over Anxiety",
+      text: "Techniques to manage nerves and inhibition, so you can speak effectively in front of any size group without dreading it beforehand.",
     },
     {
       icon: "video" as const,
-      title: "Individual Coaching",
-      text: "Our workshops feature a small group format, constructive interaction with other participants, individual coaching from workshop leaders and video feedback.",
+      // Nancy's note: "video feedback" was dated. This is what it really is.
+      title: "Private Session Recordings",
+      text: "Your sessions are recorded and kept private to you. Review them whenever you like, and bring back what you notice for another round of coaching and insight.",
     },
     {
-      icon: "users" as const,
-      title: "Communicate Better",
-      text: "A major portion of one's effectiveness lies in their ability to inform, influence, persuade and motivate. You must be highly skillful in face-to-face communication, making presentations and speaking in public.",
+      icon: "chat" as const,
+      title: "Thinking On Your Feet",
+      text: "Handle questions, objections and the unscripted moment with composure — including how to run and control a Q&A rather than survive it.",
     },
   ],
 };
 
-export const betterApproach = {
-  heading: "A Better Approach",
-  text: "At Davis Executive Training, our workshops feature a small group format, constructive interaction with other participants, individual coaching from workshop leaders and video feedback.",
-  cta: { label: "Sign Up For Workshops", href: "/contact" },
+export const outcomes = {
+  heading: "What you walk away with",
+  items: [
+    "Sell yourself and your ideas",
+    "Speak effectively before any size group",
+    "Improve job performance and production",
+    "Control anxiety and inhibition",
+    "Avoid death by PowerPoint",
+    "Heighten interest when you speak",
+    "Conduct and control question and answer sessions",
+  ],
 };
 
-export const goodCompany = {
-  heading: "You're in Good Company",
+// ---------------------------------------------------------------------------
+// 3. Programs
+//
+// In-house workshops and 1:1 coaching lead, per Nancy. Open enrollment is gone.
+// ---------------------------------------------------------------------------
+
+export const programs = {
+  eyebrow: "Programs",
+  heading: "Three ways to work together",
   intro:
-    "Here is a partial listing of companies and organizations whose executives, managers, and sales people have benefited from the practical training taught in our workshops:",
-  clients: [
+    "Every program is built around your people and the rooms they actually present in.",
+  items: [
+    {
+      icon: "building" as const,
+      title: "In-House Workshops",
+      lead: "Our most requested format.",
+      text: "A customized, participatory workshop delivered on-site at your organization, limited to a maximum of 12 participants. The content is shaped around your industry, your material and the skill level of your team.",
+      points: [
+        "On-site, anywhere",
+        "Maximum 12 participants",
+        "Built around your team's real presentations",
+      ],
+      featured: true,
+    },
+    {
+      icon: "target" as const,
+      title: "One-on-One Coaching",
+      lead: "Private, focused, and entirely yours.",
+      text: "Individual coaching for a specific person and a specific goal — a keynote, a board presentation, an investor meeting, or simply becoming the person who speaks up well. Sessions are recorded privately for your own review.",
+      points: [
+        "Fully private sessions",
+        "Built around one upcoming moment, or ongoing",
+        "Recordings kept for you to revisit",
+      ],
+      featured: true,
+    },
+    {
+      icon: "award" as const,
+      title: "Seminars",
+      lead: "How To Deliver Effective Presentations.",
+      text: "A one to three hour seminar concentrating on the physical skills required to make professional presentations. Fun, entertaining, fast paced and informative, with volunteers selected from the audience to take part. It works as a conference break-out session, or as a talk without audience participation.",
+      points: [
+        "1–3 hours",
+        "Ideal as a conference break-out session",
+        "Audience participation optional",
+      ],
+      featured: false,
+    },
+  ],
+};
+
+// ---------------------------------------------------------------------------
+// 4. Students & Schools
+// ---------------------------------------------------------------------------
+
+export const students = {
+  eyebrow: "Students & Schools",
+  heading: "The earlier you learn it, the further it carries you",
+  paragraphs: [
+    "In 1996, after years of clients asking whether their children could learn the same skills, Nancy began building communication training for young people — programming that strengthens public speaking and listening through direct, hands-on practice.",
+    "Since then DET has run programs for elementary schools, middle and high schools, and at the college level. It is some of the most rewarding work we do, and we are actively looking to do more of it.",
+  ],
+  levels: [
+    {
+      title: "Elementary",
+      text: "Early confidence in front of a group, listening skills, and the habit of speaking up.",
+    },
+    {
+      title: "Middle & High School",
+      text: "Presentations, class speeches, interviews and the poise to handle being watched.",
+    },
+    {
+      title: "College",
+      text: "Interview performance, thesis and capstone presentations, and the professional presence that gets graduates hired.",
+    },
+  ],
+  cta: { label: "Talk to us about your school", href: "#contact" },
+};
+
+// ---------------------------------------------------------------------------
+// 5. Ducks Unlimited partnership
+//
+// NAME ONLY — no logo, wordmark or brand asset. Using their trademark needs
+// written permission from Ducks Unlimited. If Nancy obtains it, a logo can be
+// added here; until then this section stays typographic.
+// ---------------------------------------------------------------------------
+
+export const partner = {
+  eyebrow: "Long-Standing Partner",
+  name: "Ducks Unlimited",
+  heading: "A partnership measured in decades",
+  text: "Ducks Unlimited has been a DET partner for many years — one of the longest-running relationships in the company's history. Training volunteer leaders and staff to speak persuasively for a cause they believe in is exactly the work this company was built to do.",
+};
+
+// ---------------------------------------------------------------------------
+// 6. Proof — clients and testimonials
+// ---------------------------------------------------------------------------
+
+export const clients = {
+  eyebrow: "You're In Good Company",
+  heading: "Organizations whose people have trained with DET",
+  intro:
+    "A partial listing of the companies and organizations whose executives, managers and sales people have benefited from the practical training taught in our workshops.",
+  items: [
     "American Express",
-    "Radiator Specialty Co.",
-    "Ducks Unlimited",
     "IBM",
     "AT&T",
     "Apple, Inc.",
-    "Hertz Corp.",
+    "Ducks Unlimited",
     "General Electric",
     "Merrill Lynch",
-    "Boise Cascade Corp.",
-    "AXA / Equitable",
-    "Jaycees",
-    "Raymond James",
-    "Southern Bell",
-    "Wachovia",
-    "Dow Chemical",
-    "Motorola",
-    "A.G. Edwards",
-    "UBS Securities",
+    "Hertz Corp.",
     "Delta Airlines",
-    "Sperry",
-    "Pacific Life",
-    "Church of the Highlands",
+    "Motorola",
+    "Dow Chemical",
     "U.S. Postal Service",
-    "Protective Life",
-    "Sun America",
+    "Wachovia",
     "International Paper",
-    "Smith Barney",
-    "AmSouth",
-    "Bank One",
-    "Pro Equities",
-    "First Protective",
+    "Boise Cascade Corp.",
+    "Radiator Specialty Co.",
+    "Southern Bell",
+    "Church of the Highlands",
     "Royal Cup Coffee",
+    "Jaycees",
   ],
 };
 
 export const testimonialSection = {
-  heading: "Testimonials",
-  intro: "Read how our participants transformed their speaking and sales confidence.",
+  eyebrow: "Testimonials",
+  heading: "What participants say",
 };
 
 export const testimonials = [
@@ -170,12 +257,6 @@ export const testimonials = [
       "I have been attending corporate seminars arranged by AT&T for about 10 years now, and none were more exciting than or as mentally stimulating as yours. In selling my product, I have to communicate concisely in face-to-face sales contacts every day. It is important that I make each phrase count. I found the ideas and techniques both enlightening and on target. It raised my confidence level and made selling a little bit more fun.",
     name: "Martin Sondey",
     role: "AT&T",
-  },
-  {
-    quote:
-      "Moe, I want to express to you what a pleasure it was taking your workshop on presentation skills. I was surprised to learn the many fine points involved in conducting seminars. I feel much more confident in my ability to increase business through seminars and speaking opportunities.",
-    name: "William Stanton",
-    role: "Financial Planner – Atlanta, GA",
   },
   {
     quote:
@@ -189,379 +270,79 @@ export const testimonials = [
     name: "Jacques Aebli III",
     role: "Planned Management Corporation",
   },
+  {
+    quote:
+      "I want to express to you what a pleasure it was taking your workshop on presentation skills. I was surprised to learn the many fine points involved in conducting seminars. I feel much more confident in my ability to increase business through seminars and speaking opportunities.",
+    name: "William Stanton",
+    role: "Financial Planner – Atlanta, GA",
+  },
 ];
 
-export const mission = {
-  eyebrow: "Mission Statement",
-  statement:
-    "To provide effective face-to-face communications training that will give you the same advantages top executives have known for years.",
-  support:
-    "Elevate your presentation impact, manage executive presence, and sharpen sales conversions with customized coaching.",
-  cta: { label: "Get Started With DET Today", href: "/contact" },
-};
-
 // ---------------------------------------------------------------------------
-// Training (overview hub)
+// 7. About Nancy
 //
-// Copy on this page follows davisexecutivetraining.com, which is the
-// authoritative source for wording.
-// ---------------------------------------------------------------------------
-
-export const training = {
-  hero: {
-    eyebrow: "Davis Executive Training Programs",
-    title: "Davis Executive Training Courses",
-    subtitle:
-      "At DET we provide training programs developed for Executives in all areas of business and programs targeted for the financial services industry.",
-  },
-  heading: "Practical Communication Workshops",
-  paragraphs: [
-    "A major portion of one's effectiveness lies in their ability to inform, influence, persuade and motivate. You must be highly skillful in face to face communication, making presentations and speaking in public.",
-    "Our workshops feature a small group format, constructive interaction with other participants, individual coaching from workshop leaders and video feedback.",
-  ],
-  // The two program families the live site organizes training around.
-  tracks: [
-    {
-      icon: "briefcase" as const,
-      title: "Executive Training",
-      text: "We're proud to offer three areas of training for business executives. We have a program that will fit your needs.",
-      href: "/executive-training",
-    },
-    {
-      icon: "dollar" as const,
-      title: "Financial Services Training",
-      text: "Wholesaler Commando Training. These workshops are specifically designed for financial wholesalers. Planners, Brokers and Agents must make presentations that motivate clients and prospects.",
-      href: "/financial-services",
-    },
-  ],
-  pillars: [
-    {
-      icon: "mic" as const,
-      title: "Control Anxiety and Inhibition",
-      text: "We teach techniques to control anxiety. You will speak effectively before any size group, with skills you can hit the ground running with immediately.",
-    },
-    {
-      icon: "video" as const,
-      title: "Video Feedback",
-      text: "Talks are video recorded and played back, so you learn from seeing yourself on replay alongside individual coaching from the instructor.",
-    },
-    {
-      icon: "chat" as const,
-      title: "Question and Answer Sessions",
-      text: "Learn to conduct and control question and answer sessions, and to heighten interest whenever you speak.",
-    },
-    {
-      icon: "target" as const,
-      title: "Sell Yourself and Your Ideas",
-      text: "Improve job performance and production by learning to inform, influence, persuade and motivate in face to face communication.",
-    },
-  ],
-  gainsHeading: "Benefits From Our Training Include",
-  // Verbatim benefits list from the live Executive Training page.
-  gains: [
-    "Sell yourself and your ideas",
-    "Speak effectively before any size group",
-    "Improve job performance and production",
-    "Control anxiety and inhibition",
-    "Avoid death by PowerPoint",
-    "Heighten interest when you speak",
-    "Conduct and control question and answer sessions",
-  ],
-  specs: {
-    heading: "Workshop Specifications",
-    items: [
-      {
-        icon: "users" as const,
-        title: "Format",
-        text: "Small group format with constructive interaction between participants. Custom in-house workshops are limited to a maximum of 12 participants; open enrollment workshops run 5-12.",
-      },
-      {
-        icon: "clock" as const,
-        title: "Seminar Length",
-        text: "The seminar format runs 1-3 hours. Workshops are scheduled to suit your organization.",
-      },
-      {
-        icon: "video" as const,
-        title: "Interactive Element",
-        text: "Participants give four short talks. Two are video recorded and played back for group critique and individual coaching.",
-      },
-    ],
-    cta: { label: "Contact Us To Learn More", href: "/contact" },
-  },
-  inHouse: {
-    heading: "Custom In-House Workshops",
-    text: "This customized in-house participatory workshop is available on-site and can be tailored to the needs of your organization and the skill level of your team.",
-    cta: { label: "Inquire for Team Training", href: "/contact" },
-  },
-};
-
-// ---------------------------------------------------------------------------
-// Executive Training
-//
-// The three program descriptions below are verbatim from
-// davisexecutivetraining.com/executive-training/.
-// ---------------------------------------------------------------------------
-
-export const executiveTraining = {
-  hero: {
-    eyebrow: "Executive Training Options",
-    title: "Executive Level Training & Presence",
-    subtitle:
-      "At Davis Executive Training, we provide three options to take advantage of this life changing education.",
-  },
-  badge: "Executive Edge",
-  heading: "The Distinguishing Characteristic of Fast-Track Performers",
-  paragraphs: [
-    "The ability to think on one's feet is perhaps the major distinguishing characteristic of fast-track performers in today's competitive, communication conscious environment!",
-    "A major portion of one's effectiveness lies in their ability to inform, influence, persuade and motivate. You must be highly skillful in face to face communication, making presentations and speaking in public.",
-  ],
-  outcomes: {
-    heading: "Benefits From Our Training",
-    items: [
-      "Sell yourself and your ideas",
-      "Speak effectively before any size group",
-      "Improve job performance and production",
-      "Control anxiety and inhibition",
-      "Avoid death by PowerPoint",
-      "Heighten interest when you speak",
-      "Conduct and control question and answer sessions",
-    ],
-    cta: { label: "Contact Us To Learn More", href: "/contact" },
-  },
-  modulesHeading: "Three Ways To Train With DET",
-  modules: [
-    {
-      title: "Seminar",
-      subtitle: "How To Deliver Effective Presentations",
-      paragraphs: [
-        "This 1-3 hour seminar is structured to concentrate on the physical skills required to make professional presentations.",
-        "The seminar teaches skills that can be put into use immediately! It is fun, entertaining, fast paced and very informative. 6 to 12 volunteers are selected from the audience to participate.",
-        "It is beneficial for managers, trainers, employees and sales people. This would be a perfect session for attendees of a corporate conference. It would be unique as a break-out session at a big conference. This session can also be delivered as an informative speech without audience participation.",
-      ],
-    },
-    {
-      title: "Custom Workshop",
-      subtitle: "The Art Of Making Powerful Effective Presentations",
-      paragraphs: [
-        "The workshop teaches the physical skills required to make professional presentations.",
-        "Audience size: This “customized” in-house participatory workshop is limited to a maximum of 12 participants.",
-      ],
-    },
-    {
-      title: "Open Enrollment",
-      subtitle: "The Art Of Making Powerful Effective Presentations",
-      paragraphs: [
-        "Open enrollment workshops are open to participants from different companies and organizations. Participant size: 5-12 participants.",
-        "During this workshop, all participants give four short talks. Two of the talks are video recorded and played back. Participants learn from critiques by the group, seeing themselves on video replay and individual coaching from the instructor.",
-        "The workshop is ideal for executives, management and sales personnel that are required to make important presentations, speeches and talks.",
-      ],
-    },
-  ],
-};
-
-// ---------------------------------------------------------------------------
-// Financial Services
-//
-// Copy verbatim from davisexecutivetraining.com/financial-services/.
-// ---------------------------------------------------------------------------
-
-export const financialServices = {
-  hero: {
-    eyebrow: "Specialized Industry Training",
-    title: "Financial Services Training",
-    subtitle:
-      "Communication and presentation skills training for planners, brokers, agents and wholesalers.",
-  },
-  badge: "Planners · Brokers · Agents",
-  heading: "Communication Skills For Financial Sales Professionals",
-  pullQuote: {
-    quote:
-      "Never before in the history of the financial services industry has the ability to communicate confidently and effectively been more important. Whether talking to clients and prospects one on one or in groups, this is the time and opportunity to establish yourself as a consummate professional!",
-    attribution: null,
-  },
-  paragraphs: [
-    "No industry has a greater requirement to be professional, proficient and effective in face to face communications than financial services sales professionals! Every day, planners, brokers and agents conduct meetings with clients and prospects one on one or in groups. They must make presentations that motivate clients and prospects to take action and implement suitable financial solutions to meet personal goals and objectives.",
-    "This curriculum was built by DET co-founder Moe Davis, a 25 year veteran of the securities and insurance industries who began his career as a financial consultant with Merrill Lynch. Workshops are led today by Nancy Davis, using the program he developed.",
-  ],
-  outcomes: {
-    heading: "You Will Learn How To",
-    items: [
-      "Speak effectively before any size group",
-      "Be perceived as a total professional",
-      "Sell yourself and your ideas",
-      "Improve job performance and increase production",
-      "Control anxiety and inhibition",
-      "Conduct and control question and answer sessions",
-    ],
-    cta: { label: "Contact Us To Learn More", href: "/contact" },
-  },
-  wholesaler: {
-    eyebrow: "Financial Industry – Wholesaler",
-    heading: "Wholesaler Commando Training",
-    quote:
-      "Highly successful financial wholesalers represent a variety of styles and personality types. The one thing they have in common is the ability to deliver powerful compelling presentations every day! They make presentations that motivate brokers, planners and agents to take action, understand how the investment products work, where they are a suitable fit, and present them with confidence and conviction to clients and prospects.",
-    quoteAttribution: "Moe Davis",
-    paragraphs: [
-      "Most wholesaling organizations recognize the need for training. In many cases however the training is too generic, too time consuming, too expensive and less effective than advertised.",
-      "Davis Executive Training offers an alternative: Wholesaler Commando Training. These workshops are specifically designed for financial wholesalers. They are available anywhere on-site and can be customized to meet the needs of your organization and the skill level of your wholesaling team.",
-    ],
-    listHeading: "Workshops include:",
-    list: [
-      "Training modules that teach specific presentation skills wholesalers need",
-      "How to avoid “Death by PowerPoint”",
-      "Small group format",
-      "Individual coaching",
-      "Video feedback",
-    ],
-    closing:
-      "These workshops teach skills your wholesalers can hit the ground running with the next day and every day! The program was developed by DET co-founder Moe Davis over a 25 year career in the financial services industry, and is delivered today by Nancy Davis.",
-  },
-  institutions: {
-    heading: "Financial Institutions Trained By DET",
-    intro:
-      "Advisors and executive leadership from these financial organizations have benefited from the practical training taught in our workshops:",
-    items: [
-      "Merrill Lynch",
-      "American Express",
-      "AXA / Equitable",
-      "Raymond James",
-      "Wachovia",
-      "A.G. Edwards",
-      "UBS Securities",
-      "Pacific Life",
-      "Protective Life",
-      "Sun America",
-      "Smith Barney",
-      "AmSouth",
-      "Bank One",
-      "Pro Equities",
-      "First Protective",
-    ],
-  },
-};
-
-// ---------------------------------------------------------------------------
-// About
-//
-// Founder bios follow davisexecutivetraining.com/about-us/.
+// Nancy leads. Moe is acknowledged briefly and linked to the memorial page.
 // ---------------------------------------------------------------------------
 
 export const about = {
-  hero: {
-    eyebrow: "About Davis Executive Training",
-    title: "Helping Your Business Build Success",
-    subtitle:
-      "Develop your path to greatness with face to face communications training built on decades of executive and financial services experience.",
-  },
-  badge: "Proven Legacy",
-  heading: "Giving You The Edge Top Executives Have Known For Years",
+  eyebrow: "About",
+  heading: "Nancy Davis",
+  role: "Founder, Davis Executive Training",
   paragraphs: [
-    "Davis Executive Training provides effective face to face communications training for executives, managers and sales professionals. Our workshops feature a small group format, constructive interaction with other participants, individual coaching from workshop leaders and video feedback.",
-    "In challenging economies, it is very important for companies to provide training that will sharpen the skills of their managers and sales executives, so they can outperform their competitors.",
+    "Nancy founded Davis Executive Training in 1988 and has spent the decades since as a charismatic, results-oriented trainer, coach and speaker specializing in executive communication and sales training.",
+    "She has trained managers, sales directors and senior executives at Fortune 500 companies, and built the company's programs for students and schools. She leads and delivers every DET program today.",
   ],
-  cta: { label: "Contact Us Today To Learn More", href: "/contact" },
-  missionCard: {
-    heading: "Our Mission",
+  mission: {
+    label: "Our Mission",
     quote:
       "To provide effective face to face communications training that will give you the same advantages top executives have known for years.",
-    stats: [
-      { label: "Small Group Format", detail: "Maximized practice & feedback" },
-      { label: "Video Feedback", detail: "Visual performance review" },
-    ],
   },
-  peopleHeading: "The People Behind DET",
-  people: [
-    {
-      name: "Nancy B. Davis",
-      role: "Founder, Davis Executive Training",
-      quote: null,
-      memorial: false,
-      paragraphs: [
-        "Nancy established Davis Executive Training in 1988 and has built recognition as a charismatic and results-oriented trainer, coach and guest speaker specializing in executive communication and sales training. She leads the company today.",
-        "Responding to repeated client requests for earlier access to such instruction, she launched youth-focused training in 1996, creating programming that strengthens public speaking and listening through direct communication practice.",
-      ],
-    },
-    {
-      name: "Eugene Moor “Moe” Davis",
-      role: "Co-founder · 1946 — 2026",
-      quote:
-        "Experience has convinced me that people who learn to communicate better automatically do a better job of managing and selling.",
-      // Renders the "In Memoriam" link at the foot of this card.
-      memorial: true,
-      paragraphs: [
-        "Moe co-founded Davis Executive Training with Nancy and brought an unusually wide business background to the training room — construction, music management, and a long career in securities and insurance that began as a financial consultant with Merrill Lynch.",
-        "He designed the company's wholesaler and financial-services curriculum and led those workshops personally for many years. Moe passed away in July 2026.",
-      ],
-    },
-  ],
-  whyHeading: "Why Executive Teams Choose DET",
-  why: [
-    {
-      icon: "users" as const,
-      title: "Small Group Format",
-      text: "Our workshops feature a small group format and constructive interaction with other participants, so everyone presents and receives feedback.",
-    },
-    {
-      icon: "book" as const,
-      title: "Skills You Can Use Immediately",
-      text: "Learn powerful communication skills you can hit the ground running with immediately, not abstract theory.",
-    },
-    {
-      icon: "building" as const,
-      title: "Trusted By Leading Organizations",
-      text: "Executives, managers and sales people from American Express, IBM, AT&T, Apple, General Electric, Merrill Lynch and the U.S. Postal Service have trained with DET.",
-    },
-  ],
+  cta: { label: "Work with Nancy", href: "#contact" },
+  // MUST be a real photograph of Nancy. Do NOT put stock photography here —
+  // a stock portrait labelled with a real person's name misrepresents her.
+  // Leave it null until she supplies a photo; the slot degrades gracefully.
+  image: null as string | null,
+  imageAlt: "Nancy Davis",
+  moe: {
+    heading: "Remembering Moe",
+    text: "Nancy's late husband and DET co-founder, Eugene Moor “Moe” Davis, helped build this company and its methods over nearly four decades. He passed away in July 2026.",
+    linkLabel: "In Memoriam",
+  },
 };
 
 // ---------------------------------------------------------------------------
-// Contact
+// 8. Contact
 // ---------------------------------------------------------------------------
 
 export const contact = {
-  hero: {
-    eyebrow: "Connect With Davis Executive Training",
-    title: "Contact Us Today To Learn More",
-    subtitle:
-      "Schedule an executive training workshop for your team or inquire about upcoming open-enrollment seminar dates.",
-  },
+  eyebrow: "Contact",
+  heading: "Tell us what you want to change",
+  intro:
+    "Whether it is a team, one person, or a school — send a note and Nancy will get back to you.",
   form: {
-    heading: "Workshop Inquiry Form",
-    intro:
-      "Please fill out the form below and a DET training coordinator will contact you promptly.",
-    submit: "Submit Inquiry",
+    submit: "Send Inquiry",
     programs: [
-      "Executive Training Workshop",
-      "Seminar – How To Deliver Effective Presentations",
-      "Custom Workshop – The Art Of Making Powerful Effective Presentations",
-      "Open Enrollment – The Art Of Making Powerful Effective Presentations",
-      "Financial Services – Wholesaler Commando Training",
-      "Planners, Brokers & Agents",
-      "No Program Yet",
+      "In-House Workshop",
+      "One-on-One Coaching",
+      "Seminar",
+      "School or Student Program",
+      "Not sure yet",
     ],
   },
-  // Neutral heading: the panel shows only whatever contact fields are filled in,
-  // so it must read correctly with one row or four.
-  hqHeading: "Get In Touch",
-  // NOTE: the design reference promised a reply "within 24 business hours".
-  // That was invented, and it is a commitment Nancy would have to keep, so it
-  // has been softened. Restore the specific number only if she wants to make it.
   guarantee: {
     heading: "What Happens Next",
-    text: "Tell us about your team and what you want the training to fix. We will follow up to talk through group size, format and scheduling.",
+    text: "Tell us about your group and what you want the training to fix. We will follow up to talk through size, format and scheduling.",
   },
 };
 
 // ---------------------------------------------------------------------------
-// In Memoriam — Eugene Moor "Moe" Davis
+// In Memoriam — Eugene Moor "Moe" Davis (separate page at /in-memoriam)
 //
 // Written from the obituary his family published on Legacy.com, in our own
-// words rather than reproduced from it. Nancy should review and reword freely;
-// this is her page more than anyone's.
+// words rather than reproduced from it.
 //
 // Deliberately omitted: the obituary's passage about his sobriety and his AA
 // sponsorship. It belongs to the family to place, not to a business site.
-// If they want it here, add it as a paragraph in `life.paragraphs`.
 // ---------------------------------------------------------------------------
 
 export const memorial = {
@@ -574,9 +355,8 @@ export const memorial = {
   role: "Co-founder, Davis Executive Training",
 
   intro:
-    "Moe Davis spent his working life convincing people they were more persuasive than they believed. He co-founded Davis Executive Training with his wife, Nancy, and for decades he stood at the front of rooms full of executives, wholesalers and sales teams and taught them how to be heard.",
+    "Moe Davis spent his working life convincing people they were more persuasive than they believed. He co-founded Davis Executive Training with his wife, Nancy, and for decades he stood at the front of rooms full of executives and sales teams and taught them how to be heard.",
 
-  // His own words, as they have long appeared on the company's About page.
   quote:
     "Experience has convinced me that people who learn to communicate better automatically do a better job of managing and selling.",
 
@@ -625,35 +405,7 @@ export const memorial = {
 // ---------------------------------------------------------------------------
 
 export const footer = {
-  badge: "Proven Corporate Methodologies",
-  quickLinksHeading: "Quick Links",
-  quickLinks: [
-    { label: "Home (DET)", href: "/" },
-    { label: "Training Programs", href: "/training" },
-    { label: "Executive Training", href: "/executive-training" },
-    { label: "Financial Services Focus", href: "/financial-services" },
-    { label: "About Us", href: "/about" },
-    { label: "Contact Us", href: "/contact" },
-    { label: "In Memoriam", href: "/in-memoriam" },
-  ],
-  trustedHeading: "Trusted By Leaders",
-  trustedIntro: "Executives & sales teams from premier organizations rely on DET:",
-  trusted: [
-    "AT&T",
-    "Apple, Inc.",
-    "Hertz Corp.",
-    "Merrill Lynch",
-    "Dow Chemical",
-    "IBM",
-    "American Express",
-    "General Electric",
-    "Wachovia",
-    "U.S. Postal Service",
-  ],
+  links: nav,
   touchHeading: "Get In Touch",
-  cta: { label: "Inquire For Your Team", href: "/contact" },
-  legal: [
-    { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Special Thanks & Attribution", href: "/special-thanks" },
-  ],
+  legal: [{ label: "Privacy Policy", href: "/privacy-policy" }],
 };

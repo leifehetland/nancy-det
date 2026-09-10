@@ -15,9 +15,9 @@ const archivo = Archivo({
 });
 
 const siteUrl = "https://www.nancydavisexecutivetraining.com";
-const title = `${site.name} — Build Success, Manage Better, Sell More`;
+const title = `${site.name} — Executive Communication & Presentation Training`;
 const description =
-  "Executive Communication & Presentation Workshops. Control anxiety, refine persuasive delivery, and use video feedback in highly structured small-group workshops.";
+  "In-house workshops, one-on-one coaching and student programs in public speaking and presentation skills. Small groups, real practice, and private session recordings you keep.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
