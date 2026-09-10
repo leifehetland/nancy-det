@@ -66,10 +66,10 @@ export default function ContactForm() {
         className="rounded-xl border border-brand/25 bg-brand-wash p-8 text-center"
       >
         <p className="font-display text-lg font-extrabold text-ink">
-          Thank you — your inquiry is on its way.
+          Thank you. Your inquiry is on its way.
         </p>
         <p className="mt-2 text-sm text-slate-body">
-          Thanks for reaching out — we will follow up with you shortly.
+          Thanks for reaching out. We will follow up with you shortly.
         </p>
         <button type="button" onClick={() => setStatus("idle")} className="btn-secondary mt-6">
           Send another inquiry
@@ -81,7 +81,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="mt-7 space-y-5" noValidate>
       {/* Honeypot. Hidden from people, irresistible to bots. Not `display:none`,
-          which some bots skip — off-screen with aria-hidden works better. */}
+          which some bots skip. Off-screen with aria-hidden works better. */}
       <div aria-hidden="true" className="absolute left-[-9999px] top-0 h-0 w-0 overflow-hidden">
         <label htmlFor="website">Website (leave this blank)</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />

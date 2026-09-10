@@ -50,8 +50,9 @@ export default function InMemoriamPage() {
             <blockquote className="font-display text-xl font-semibold italic leading-relaxed text-ink sm:text-2xl">
               “{m.quote}”
             </blockquote>
-            <figcaption className="mt-4 text-sm font-bold text-slate-muted">
-              — {m.shortName}
+            <figcaption className="mt-4 flex items-center gap-3 text-sm font-bold text-slate-muted">
+              <span aria-hidden="true" className="h-px w-6 bg-brand" />
+              {m.shortName}
             </figcaption>
           </figure>
         </div>

@@ -37,7 +37,7 @@ export async function sendInquiry(d: InquiryPayload): Promise<SendResult> {
 
   if (!apiKey) {
     // Fail loudly in the server log; the caller returns a generic message.
-    console.error("[inquiry] RESEND_API_KEY is not set — inquiry was NOT sent.");
+    console.error("[inquiry] RESEND_API_KEY is not set, inquiry was NOT sent.");
     return { ok: false, error: "not_configured" };
   }
 
@@ -52,7 +52,7 @@ export async function sendInquiry(d: InquiryPayload): Promise<SendResult> {
         from: `Davis Executive Training <${from}>`,
         to: [to],
         reply_to: d.email,
-        subject: `Workshop inquiry — ${d.name}${d.company ? ` (${d.company})` : ""}`,
+        subject: `Workshop inquiry from ${d.name}${d.company ? ` (${d.company})` : ""}`,
         text: formatInquiryText(d),
       }),
     });

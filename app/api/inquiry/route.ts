@@ -54,7 +54,7 @@ export async function POST(request: Request) {
   // Honeypot: the field is hidden from real users, so anything in it is a bot.
   // Return 200 so the bot believes it succeeded and does not retry.
   if (parsed.data.website) {
-    console.warn(`[inquiry] Honeypot triggered from ${ip} — discarded.`);
+    console.warn(`[inquiry] Honeypot triggered from ${ip}, discarded.`);
     return NextResponse.json({ ok: true });
   }
 
@@ -64,7 +64,7 @@ export async function POST(request: Request) {
       {
         ok: false,
         error:
-          "Sorry — we couldn't send that just now. Please email nancy@nancydavisexecutivetraining.com directly.",
+          "Sorry, we couldn't send that just now. Please email nancy@nancydavisexecutivetraining.com directly.",
       },
       { status: 502 }
     );

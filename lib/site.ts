@@ -105,7 +105,7 @@ export const approach = {
     {
       icon: "users" as const,
       title: "Small Group Format",
-      text: "Groups stay small enough that everyone stands up, presents more than once, and gets constructive feedback in the room — not a lecture you sit through.",
+      text: "Groups stay small enough that everyone stands up, presents more than once, and gets constructive feedback in the room. It is not a lecture you sit through.",
     },
     {
       icon: "mic" as const,
@@ -121,7 +121,7 @@ export const approach = {
     {
       icon: "chat" as const,
       title: "Thinking On Your Feet",
-      text: "Handle questions, objections and the unscripted moment with composure — including how to run and control a Q&A rather than survive it.",
+      text: "Handle questions, objections and the unscripted moment with composure, including how to run and control a Q&A rather than survive it.",
     },
   ],
 };
@@ -167,7 +167,7 @@ export const programs = {
       icon: "target" as const,
       title: "One-on-One Coaching",
       lead: "Private, focused, and entirely yours.",
-      text: "Individual coaching for a specific person and a specific goal — a keynote, a board presentation, an investor meeting, or simply becoming the person who speaks up well. Sessions are recorded privately for your own review.",
+      text: "Individual coaching for a specific person and a specific goal: a keynote, a board presentation, an investor meeting, or simply becoming the person who speaks up well. Sessions are recorded privately for your own review.",
       points: [
         "Fully private sessions",
         "Built around one upcoming moment, or ongoing",
@@ -198,7 +198,7 @@ export const students = {
   eyebrow: "Students & Schools",
   heading: "The earlier you learn it, the further it carries you",
   paragraphs: [
-    "In 1996, after years of clients asking whether their children could learn the same skills, Nancy began building communication training for young people — programming that strengthens public speaking and listening through direct, hands-on practice.",
+    "In 1996, after years of clients asking whether their children could learn the same skills, Nancy began building communication training for young people, programming that strengthens public speaking and listening through direct, hands-on practice.",
     "Since then DET has run programs for elementary schools, middle and high schools, and at the college level. It is some of the most rewarding work we do, and we are actively looking to do more of it.",
   ],
   levels: [
@@ -230,7 +230,7 @@ export const partner = {
   eyebrow: "Long-Standing Partner",
   name: "Ducks Unlimited",
   heading: "A partnership measured in decades",
-  text: "Ducks Unlimited has been a DET partner for many years — one of the longest-running relationships in the company's history. Training volunteer leaders and staff to speak persuasively for a cause they believe in is exactly the work this company was built to do.",
+  text: "Ducks Unlimited has been a DET partner for many years, one of the longest-running relationships in the company's history. Training volunteer leaders and staff to speak persuasively for a cause they believe in is exactly the work this company was built to do.",
 };
 
 // ---------------------------------------------------------------------------
@@ -338,7 +338,7 @@ export const contact = {
   eyebrow: "Contact",
   heading: "Tell us what you want to change",
   intro:
-    "Whether it is a team, one person, or a school — send a note and Nancy will get back to you.",
+    "Whether it is a team, one person, or a school, send a note and Nancy will get back to you.",
   form: {
     submit: "Send Inquiry",
     programs: [
@@ -371,7 +371,7 @@ export const memorial = {
   eyebrow: "In Memoriam",
   name: "Eugene Moor “Moe” Davis",
   shortName: "Moe Davis",
-  dates: "June 16, 1946 — July 11, 2026",
+  dates: "June 16, 1946 – July 11, 2026",
   role: "Co-founder, Davis Executive Training",
 
   intro:
@@ -385,21 +385,21 @@ export const memorial = {
     paragraphs: [
       "Moe was born on June 16, 1946 in Jacksonville, Florida, to Ruth and George Davis. He lived in Tallahassee and in Davidson, North Carolina, before settling in Birmingham, Alabama. He graduated from Florida State University and stayed a Seminoles fan for the rest of his life. He served in the Army Reserves during the Vietnam War.",
       "His career refused to sit still. He worked in construction with Daniel Construction and in the motor oil business with Quaker State. He founded Panacea Talent Management and spent a stretch of his life managing rock bands. He moved into finance at Merrill Lynch, became a National Sales Director at Protective Life, and later specialized in brokering life insurance settlements. Through much of it, he and Nancy ran Davis Executive Training together.",
-      "That range is exactly what made him good in a training room. He had sold in enough different rooms — job sites, studios, boardrooms — to know what actually works when you are standing in front of people who have somewhere else to be.",
+      "That range is exactly what made him good in a training room. He had sold in enough different rooms, from job sites to studios to boardrooms, to know what actually works when you are standing in front of people who have somewhere else to be.",
     ],
   },
 
   personal: {
     heading: "Away From The Podium",
     paragraphs: [
-      "Music never left him. He loved classic rock and played guitar. He cooked, and he fed people. He kept his friendships going for decades — the kind where people actually stay in touch.",
+      "Music never left him. He loved classic rock and played guitar. He cooked, and he fed people. He kept his friendships going for decades, the kind where people actually stay in touch.",
     ],
   },
 
   survivors: {
     heading: "Survived By",
     items: [
-      { name: "Nancy Davis", detail: "his wife — 47 years together, 40 of them married" },
+      { name: "Nancy Davis", detail: "his wife, 47 years together and 40 of them married" },
       { name: "Emily Hetland and her husband, Leif Hetland", detail: "his daughter" },
       { name: "Will Davis and his wife, Anna Grace Tribble", detail: "his son" },
     ],

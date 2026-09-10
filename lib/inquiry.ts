@@ -74,13 +74,12 @@ export function formatInquiryText(d: InquiryPayload): string {
     `Name:     ${d.name}`,
     `Email:    ${d.email}`,
     `Phone:    ${d.phone}`,
-    `Company:  ${d.company || "—"}`,
-    `Program:  ${d.program || "—"}`,
+    `Company:  ${d.company || "(not given)"}`,
+    `Program:  ${d.program || "(not given)"}`,
     "",
     "Message:",
     d.message || "(none)",
     "",
-    "—",
     "Reply directly to this email to reach the sender.",
   ].join("\n");
 }
