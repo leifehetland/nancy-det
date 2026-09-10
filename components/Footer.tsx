@@ -16,16 +16,16 @@ export default function Footer() {
 
         <div>
           <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-ink">Explore</h2>
-          <ul className="mt-4 space-y-2.5 text-sm">
+          <ul className="mt-4 text-sm lg:space-y-2.5">
             {footer.links.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className="text-slate-body hover:text-brand">
+                <a href={item.href} className="flex min-h-[44px] items-center text-slate-body hover:text-brand-dark lg:min-h-0 lg:py-1">
                   {item.label}
                 </a>
               </li>
             ))}
             <li>
-              <Link href={memorial.href} className="text-slate-body hover:text-brand">
+              <Link href={memorial.href} className="flex min-h-[44px] items-center text-slate-body hover:text-brand-dark lg:min-h-0 lg:py-1">
                 {memorial.navLabel}
               </Link>
             </li>
@@ -41,7 +41,7 @@ export default function Footer() {
               <li>
                 <a
                   href={site.emailHref}
-                  className="inline-flex items-start gap-2 text-slate-body hover:text-brand"
+                  className="inline-flex min-h-[44px] items-center gap-2 text-slate-body hover:text-brand-dark"
                 >
                   <Icon.mail className="mt-0.5 shrink-0 text-base text-brand" />
                   <span>
@@ -76,7 +76,7 @@ export default function Footer() {
           </span>
           <div className="flex gap-6">
             {footer.legal.map((item) => (
-              <Link key={item.href} href={item.href} className="hover:text-brand">
+              <Link key={item.href} href={item.href} className="inline-flex min-h-[44px] items-center hover:text-brand-dark sm:min-h-0">
                 {item.label}
               </Link>
             ))}

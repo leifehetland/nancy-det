@@ -181,7 +181,14 @@ export default function HomePage() {
                     >
                       {p.title}
                     </h3>
-                    <p className="mt-1 text-sm font-bold text-brand">{p.lead}</p>
+                    <p
+                      className={[
+                        "mt-1 text-sm font-bold",
+                        p.featured ? "text-brand-light" : "text-brand-dark",
+                      ].join(" ")}
+                    >
+                      {p.lead}
+                    </p>
                     <p
                       className={[
                         "mt-4 max-w-2xl text-sm leading-relaxed",
@@ -199,7 +206,12 @@ export default function HomePage() {
                             p.featured ? "text-white/85" : "text-ink/80",
                           ].join(" ")}
                         >
-                          <Icon.check className="shrink-0 text-sm text-brand" />
+                          <Icon.check
+                            className={[
+                              "shrink-0 text-sm",
+                              p.featured ? "text-brand-light" : "text-brand-dark",
+                            ].join(" ")}
+                          />
                           {pt}
                         </li>
                       ))}
@@ -249,7 +261,7 @@ export default function HomePage() {
       <section className="bg-ink">
         <div className="container-x py-16 lg:py-20">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-light">
               {partner.eyebrow}
             </p>
             {/* Name only — no Ducks Unlimited logo or brand mark without their
@@ -360,7 +372,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href={memorial.href}
-                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-brand hover:text-brand-dark"
+                  className="mt-4 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-bold text-brand-dark hover:text-brand"
                 >
                   {about.moe.linkLabel}
                   <Icon.chevron className="text-xs" />

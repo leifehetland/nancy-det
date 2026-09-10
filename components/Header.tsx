@@ -48,7 +48,7 @@ export default function Header() {
   }, []);
 
   return (
-    <>
+    <header>
       {/* Slim navy strip. Reinstated in the colour pass — it puts brand navy at
           the very top of the page and carries the email, which is currently the
           only contact route. */}
@@ -61,7 +61,7 @@ export default function Header() {
           {site.email && site.emailHref && (
             <a
               href={site.emailHref}
-              className="hidden items-center gap-1.5 text-white/80 hover:text-white sm:flex"
+              className="hidden min-h-[32px] items-center gap-1.5 text-white/80 hover:text-white sm:flex"
             >
               <Icon.mail className="text-brand-light" />
               {site.email}
@@ -70,12 +70,12 @@ export default function Header() {
         </div>
       </div>
 
-    <header
-      className={[
-        "sticky top-0 z-50 bg-white/95 backdrop-blur transition-shadow",
-        scrolled ? "border-b border-mist-line shadow-sm" : "border-b border-transparent",
-      ].join(" ")}
-    >
+      <div
+        className={[
+          "sticky top-0 z-50 bg-white/95 backdrop-blur transition-shadow",
+          scrolled ? "border-b border-mist-line shadow-sm" : "border-b border-transparent",
+        ].join(" ")}
+      >
       <div className="container-x flex items-center justify-between gap-6 py-4">
         <Logo />
 
@@ -89,7 +89,7 @@ export default function Header() {
                 "relative whitespace-nowrap px-3 py-2 text-sm font-semibold transition-colors",
                 "after:absolute after:inset-x-3 after:-bottom-px after:h-[2px] after:transition-colors",
                 active === item.href
-                  ? "text-brand after:bg-brand"
+                  ? "text-brand-dark after:bg-brand"
                   : "text-ink/70 after:bg-transparent hover:text-ink",
               ].join(" ")}
             >
@@ -106,7 +106,7 @@ export default function Header() {
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
           aria-expanded={open}
-          className="flex h-10 w-10 items-center justify-center rounded-md border border-mist-line text-ink lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-md border border-mist-line text-ink lg:hidden"
         >
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
             {open ? (
@@ -126,7 +126,7 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="py-3 text-sm font-semibold text-ink hover:text-brand"
+                className="flex min-h-[44px] items-center text-sm font-semibold text-ink hover:text-brand-dark"
               >
                 {item.label}
               </a>
@@ -137,14 +137,14 @@ export default function Header() {
             <Link
               href="/in-memoriam"
               onClick={() => setOpen(false)}
-              className="mt-4 border-t border-mist-line pt-4 text-sm text-slate-body hover:text-brand"
+              className="mt-4 flex min-h-[44px] items-center border-t border-mist-line pt-4 text-sm text-slate-body hover:text-brand-dark"
             >
               In Memoriam
             </Link>
           </nav>
         </div>
       )}
+      </div>
     </header>
-    </>
   );
 }

@@ -28,7 +28,7 @@ export default function InMemoriamPage() {
           </h1>
           <span aria-hidden="true" className="mx-auto mt-7 block h-px w-16 bg-brand" />
           <p className="mt-7 text-base text-white/70">{m.dates}</p>
-          <p className="mt-1.5 text-sm text-white/45">{m.role}</p>
+          <p className="mt-1.5 text-sm text-white/60">{m.role}</p>
         </div>
       </section>
 

@@ -53,7 +53,7 @@ export default function ContactForm() {
   }
 
   const field =
-    "mt-1.5 w-full rounded-md border border-mist-line bg-white px-3.5 py-2.5 text-sm text-ink " +
+    "mt-1.5 w-full rounded-md border border-mist-line bg-white px-3.5 py-3 text-sm text-ink min-h-[44px] " +
     "placeholder:text-slate-muted focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25 " +
     "disabled:opacity-60";
   const label = "block text-[11px] font-bold uppercase tracking-[0.12em] text-ink";
@@ -90,19 +90,54 @@ export default function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="name" className={label}>Full Name *</label>
-          <input id="name" name="name" required disabled={busy} placeholder="e.g. John Smith" className={field} />
+          <input
+            id="name"
+            name="name"
+            required
+            disabled={busy}
+            autoComplete="name"
+            placeholder="e.g. John Smith"
+            className={field}
+          />
         </div>
         <div>
           <label htmlFor="email" className={label}>Email Address *</label>
-          <input id="email" name="email" type="email" required disabled={busy} placeholder="e.g. jsmith@company.com" className={field} />
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            disabled={busy}
+            autoComplete="email"
+            inputMode="email"
+            placeholder="e.g. jsmith@company.com"
+            className={field}
+          />
         </div>
         <div>
           <label htmlFor="phone" className={label}>Phone Number *</label>
-          <input id="phone" name="phone" type="tel" required disabled={busy} placeholder="e.g. (404) 555-0199" className={field} />
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            required
+            disabled={busy}
+            autoComplete="tel"
+            inputMode="tel"
+            placeholder="e.g. (205) 555-0199"
+            className={field}
+          />
         </div>
         <div>
           <label htmlFor="company" className={label}>Company / Organization</label>
-          <input id="company" name="company" disabled={busy} placeholder="e.g. AT&T or Merrill Lynch" className={field} />
+          <input
+            id="company"
+            name="company"
+            disabled={busy}
+            autoComplete="organization"
+            placeholder="e.g. Ducks Unlimited"
+            className={field}
+          />
         </div>
       </div>
 

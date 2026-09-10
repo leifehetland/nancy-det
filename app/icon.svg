@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Davis Executive Training">
+  <rect width="512" height="512" rx="72" fill="#e31e24"/>
+  <path d="M196 196 L196 316 L286 256 Z" fill="#a6a8ab"/>
+  <path d="M186 96 H286 a160 160 0 0 1 0 320 H186 v-84 h100 a76 76 0 0 0 0-152 H186 Z" fill="#ffffff"/>
+</svg>

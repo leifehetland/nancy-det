@@ -16,7 +16,14 @@ const config: Config = {
           soft: "#16233c",
           line: "#26344f",
         },
-        // `brand` is the DET red from the logo, used for accents and CTAs.
+        // `brand` is the DET red from the logo.
+        //
+        // CONTRAST RULES (all measured against WCAG AA, 4.5:1 for body text):
+        //   bg-brand          fills only. White text on it is 4.72:1. OK.
+        //   text-brand-dark   red TEXT on light surfaces. 6.03:1 on white.
+        //                     Plain `text-brand` on white is 4.48:1 and FAILS.
+        //   text-brand-light  red TEXT on navy. 5.76:1 on #0f1a2e.
+        //                     Plain `text-brand` on navy is 3.7:1 and FAILS.
         brand: {
           DEFAULT: "#e31e24",
           dark: "#c4161c",
@@ -31,7 +38,9 @@ const config: Config = {
         },
         slate: {
           body: "#475569",
-          muted: "#94a3b8",
+          // Was #94a3b8, which is only 2.56:1 on white and failed AA badly.
+          // #64748b is 4.76:1.
+          muted: "#64748b",
         },
       },
       fontFamily: {

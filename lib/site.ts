@@ -32,15 +32,17 @@ export const site = {
   email: "nancy@nancydavisexecutivetraining.com" as string | null,
   emailHref: "mailto:nancy@nancydavisexecutivetraining.com" as string | null,
 
-  // TODO: confirm what Nancy wants published, if anything. An unclaimed Manta
-  // listing suggests a Vestavia Hills, AL address, but it looks residential —
-  // do not publish without her explicit say-so.
-  locations: null as string | null,
-  hq: null as string | null,
+  // City only, confirmed by Nancy. No street address is published: the one
+  // that turns up in third-party listings looks residential.
+  locations: "Birmingham, Alabama" as string | null,
+  hq: "Based in Birmingham, Alabama" as string | null,
+  // Travels for on-site work. Stated plainly so prospects outside Birmingham
+  // do not assume they are out of range.
+  serviceArea: "Available on-site nationwide",
   hours: null as string | null,
 
   description:
-    "Davis Executive Training helps executives, managers, sales professionals and students speak with clarity, confidence and presence.",
+    "Davis Executive Training helps executives, managers, sales professionals and students speak with clarity, confidence and presence. Based in Birmingham, Alabama, available on-site nationwide.",
 };
 
 /** Anchor targets on the one-page site. Order matches the page. */
@@ -338,7 +340,7 @@ export const contact = {
   eyebrow: "Contact",
   heading: "Tell us what you want to change",
   intro:
-    "Whether it is a team, one person, or a school, send a note and Nancy will get back to you.",
+    "Whether it is a team, one person, or a school, send a note and Nancy will get back to you. DET is based in Birmingham, Alabama and travels for on-site work.",
   form: {
     submit: "Send Inquiry",
     programs: [

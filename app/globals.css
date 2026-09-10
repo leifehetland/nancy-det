@@ -10,6 +10,44 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Anchor scrolling and transitions can trigger nausea for people with
+   vestibular disorders. Respect the OS-level setting. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Keyboard skip link: off-screen until focused. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 0.75rem;
+  top: 0.75rem;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.375rem;
+  background: #0f1a2e;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
 body {
   @apply bg-white text-slate-body antialiased;
 }
@@ -52,8 +90,9 @@ body {
 
   /* --- Typography ---------------------------------------------------- */
 
+  /* Red text on LIGHT surfaces. See the contrast note in tailwind.config.ts. */
   .eyebrow {
-    @apply text-xs font-bold uppercase tracking-[0.18em] text-brand;
+    @apply text-xs font-bold uppercase tracking-[0.18em] text-brand-dark;
   }
 
   .section-title {

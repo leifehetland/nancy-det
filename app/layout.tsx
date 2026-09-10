@@ -31,8 +31,14 @@ export const metadata: Metadata = {
     siteName: site.name,
     title,
     description,
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: site.name }],
   },
-  twitter: { card: "summary_large_image", title, description },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/og.png"],
+  },
 };
 
 export const viewport: Viewport = {
@@ -43,9 +49,42 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${archivo.variable}`}>
       <body>
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
         <Header />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
+        {/* Structured data. Only facts we can stand behind: no street address,
+            no phone, no price. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: site.name,
+              url: siteUrl,
+              description,
+              email: site.email,
+              areaServed: "US",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Birmingham",
+                addressRegion: "AL",
+                addressCountry: "US",
+              },
+              founder: { "@type": "Person", name: "Nancy Davis" },
+              foundingDate: "1988",
+              knowsAbout: [
+                "Public speaking",
+                "Executive communication",
+                "Presentation skills",
+                "Sales presentation training",
+              ],
+            }),
+          }}
+        />
       </body>
     </html>
   );
