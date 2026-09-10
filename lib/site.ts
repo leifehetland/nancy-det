@@ -58,10 +58,11 @@ export const nav = [
 
 export const hero = {
   eyebrow: "Executive Communication & Presentation Training",
-  quote:
-    "We judge ourselves by our intentions, do we not? We judge others by their actions! What we see and what we hear is all we have to go on. It is what determines how we are perceived!",
-  attribution: "Nancy Davis",
-  attributionRole: "Founder, Davis Executive Training",
+  // Headline echoes the Nancy quote (intentions vs. perception) in six words.
+  // The quote itself now lives in the band below — see `quoteBand`.
+  // Alternates, if Nancy prefers: "Say it so it lands." or the original
+  // "Build Success. Manage Better. Sell More."
+  heading: "Be perceived the way you intend.",
   intro:
     "The ability to think on one's feet is perhaps the major distinguishing characteristic of fast-track performers in today's competitive, communication conscious environment.",
   primaryCta: { label: "Start a Conversation", href: "#contact" },
@@ -70,6 +71,25 @@ export const hero = {
   // slot. Stock photography is fine for this one — it is a generic scene.
   image: null as string | null,
   imageAlt: "A speaker addressing a small group of professionals",
+  // Small navy credential strip under the hero.
+  facts: [
+    { value: "1988", label: "Training since" },
+    { value: "12", label: "Maximum group size" },
+    { value: "On-site", label: "At your offices, anywhere" },
+  ],
+};
+
+/**
+ * Full-width navy pull-quote between the hero and the Approach section.
+ * Moved out of the hero: it is the premise the training rests on, which reads
+ * far better as the lead-in to "how we work" than as the first thing a
+ * stranger sees.
+ */
+export const quoteBand = {
+  quote:
+    "We judge ourselves by our intentions, do we not? We judge others by their actions! What we see and what we hear is all we have to go on. It is what determines how we are perceived!",
+  attribution: "Nancy Davis",
+  attributionRole: "Founder, Davis Executive Training",
 };
 
 // ---------------------------------------------------------------------------

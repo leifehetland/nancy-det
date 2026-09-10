@@ -37,6 +37,15 @@ body {
            focus-visible:outline-ink;
   }
 
+  /* Outlined navy button, for a secondary action beside the red primary. */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border-2 border-ink
+           px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink
+           transition-colors hover:bg-ink hover:text-white
+           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+           focus-visible:outline-ink;
+  }
+
   .btn-block {
     @apply w-full;
   }
@@ -83,6 +92,25 @@ body {
 
   .icon-tile {
     @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-tint text-brand;
+  }
+
+
+  /* --- Colour pass helpers ------------------------------------------- */
+
+  /* Eyebrow on dark surfaces. */
+  .eyebrow-light {
+    @apply text-xs font-bold uppercase tracking-[0.18em] text-brand-light;
+  }
+
+  /* Section title on dark surfaces. */
+  .section-title-light {
+    @apply font-display text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl;
+  }
+
+  /* Short red rule used to open a section. */
+  .rule-top::before {
+    content: "";
+    @apply mb-5 block h-1 w-10 rounded-full bg-brand;
   }
 
   .pill-badge {

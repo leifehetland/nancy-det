@@ -12,6 +12,7 @@ import {
   outcomes,
   partner,
   programs,
+  quoteBand,
   students,
   testimonialSection,
   testimonials,
@@ -28,37 +29,22 @@ export default function HomePage() {
   return (
     <>
       {/* ============ HERO ============ */}
-      <section className="border-b border-mist-line bg-white">
-        <div className="container-x grid items-center gap-12 py-16 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:py-24">
+      <section className="bg-white">
+        <div className="container-x grid items-center gap-12 py-16 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:py-24">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">
-              {hero.eyebrow}
-            </p>
-
-            <blockquote className="mt-8">
-              <p className="font-display text-2xl font-extrabold leading-[1.28] tracking-tight text-ink sm:text-3xl lg:text-[2.35rem]">
-                <span aria-hidden="true" className="text-brand">“</span>
-                {hero.quote}
-                <span aria-hidden="true" className="text-brand">”</span>
-              </p>
-              <footer className="mt-6 flex items-center gap-3">
-                <span aria-hidden="true" className="h-px w-8 bg-brand" />
-                <span className="text-sm">
-                  <span className="font-bold text-ink">{hero.attribution}</span>
-                  <span className="text-slate-muted"> · {hero.attributionRole}</span>
-                </span>
-              </footer>
-            </blockquote>
-
-            <p className="mt-8 max-w-xl text-base leading-relaxed text-slate-body">
+            <p className="eyebrow">{hero.eyebrow}</p>
+            <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
+              {hero.heading}
+            </h1>
+            <span aria-hidden="true" className="mt-7 block h-1 w-16 rounded-full bg-brand" />
+            <p className="mt-7 max-w-xl text-base leading-relaxed text-slate-body">
               {hero.intro}
             </p>
-
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <a href={hero.primaryCta.href} className="btn-primary normal-case tracking-normal">
                 {hero.primaryCta.label}
               </a>
-              <a href={hero.secondaryCta.href} className="btn-secondary normal-case tracking-normal">
+              <a href={hero.secondaryCta.href} className="btn-ghost normal-case tracking-normal">
                 {hero.secondaryCta.label}
               </a>
             </div>
@@ -68,16 +54,55 @@ export default function HomePage() {
             label={hero.imageAlt}
             src={hero.image}
             priority
+            tone="dark"
             rounded="rounded-2xl"
             className="aspect-[4/5] w-full"
           />
+        </div>
+
+        {/* Navy credential strip — grounds the hero and brings brand colour in
+            immediately below the fold line. */}
+        <div className="bg-ink">
+          <div className="container-x grid divide-y divide-white/10 py-2 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            {hero.facts.map((f) => (
+              <div key={f.label} className="flex items-baseline gap-3 px-2 py-4 sm:justify-center">
+                <span className="font-display text-2xl font-extrabold text-brand-light">
+                  {f.value}
+                </span>
+                <span className="text-xs font-semibold uppercase tracking-[0.12em] text-white/60">
+                  {f.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============ QUOTE BAND ============ */}
+      {/* The quote moved out of the hero. It reads as the premise for the
+          Approach section that follows, rather than as an opening statement. */}
+      <section className="border-y-4 border-brand bg-ink">
+        <div className="container-x py-16 lg:py-20">
+          <figure className="mx-auto max-w-4xl text-center">
+            <Icon.quote className="mx-auto text-3xl text-brand" aria-hidden="true" />
+            <blockquote className="mt-6 font-display text-xl font-extrabold leading-[1.4] tracking-tight text-white sm:text-2xl lg:text-[1.9rem]">
+              {quoteBand.quote}
+            </blockquote>
+            <figcaption className="mt-7 flex items-center justify-center gap-3 text-sm">
+              <span aria-hidden="true" className="h-px w-8 bg-brand" />
+              <span>
+                <span className="font-bold text-white">{quoteBand.attribution}</span>
+                <span className="text-white/50"> · {quoteBand.attributionRole}</span>
+              </span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
       {/* ============ APPROACH ============ */}
       <section id="approach" className="scroll-mt-20 bg-mist-light">
         <div className="container-x py-20 lg:py-24">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl rule-top">
             <p className="eyebrow">{approach.eyebrow}</p>
             <h2 className="section-title mt-4">{approach.heading}</h2>
             <p className="mt-5 text-base leading-relaxed text-slate-body">{approach.intro}</p>
@@ -100,12 +125,14 @@ export default function HomePage() {
             })}
           </div>
 
-          <div className="mt-16 border-t border-mist-line pt-10">
-            <h3 className="font-display text-base font-extrabold text-ink">{outcomes.heading}</h3>
-            <ul className="mt-6 grid gap-x-10 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Outcomes moved onto navy so the section closes with weight. */}
+          <div className="mt-16 rounded-2xl bg-ink p-8 sm:p-10">
+            <h3 className="font-display text-lg font-extrabold text-white">{outcomes.heading}</h3>
+            <span aria-hidden="true" className="mt-4 block h-1 w-10 rounded-full bg-brand" />
+            <ul className="mt-7 grid gap-x-10 gap-y-3.5 sm:grid-cols-2 lg:grid-cols-3">
               {outcomes.items.map((o) => (
-                <li key={o} className="flex items-start gap-2.5 text-sm text-slate-body">
-                  <Icon.check className="mt-0.5 shrink-0 text-base text-brand" />
+                <li key={o} className="flex items-start gap-2.5 text-sm text-white/75">
+                  <Icon.check className="mt-0.5 shrink-0 text-base text-brand-light" />
                   {o}
                 </li>
               ))}
@@ -117,7 +144,7 @@ export default function HomePage() {
       {/* ============ PROGRAMS ============ */}
       <section id="programs" className="scroll-mt-20 bg-white">
         <div className="container-x py-20 lg:py-24">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl rule-top">
             <p className="eyebrow">{programs.eyebrow}</p>
             <h2 className="section-title mt-4">{programs.heading}</h2>
             <p className="mt-5 text-base leading-relaxed text-slate-body">{programs.intro}</p>
@@ -189,7 +216,7 @@ export default function HomePage() {
       <section id="students" className="scroll-mt-20 bg-mist-light">
         <div className="container-x py-20 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
+            <div className="rule-top">
               <p className="eyebrow">{students.eyebrow}</p>
               <h2 className="section-title mt-4">{students.heading}</h2>
               <div className="mt-6 space-y-4">
@@ -204,13 +231,15 @@ export default function HomePage() {
               </a>
             </div>
 
-            <div className="space-y-5">
-              {students.levels.map((lvl) => (
-                <div key={lvl.title} className="border-l-2 border-brand pl-6">
-                  <h3 className="font-display text-lg font-extrabold text-ink">{lvl.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-body">{lvl.text}</p>
-                </div>
-              ))}
+            <div className="rounded-2xl bg-ink p-8 sm:p-9">
+              <div className="space-y-7">
+                {students.levels.map((lvl) => (
+                  <div key={lvl.title} className="border-l-2 border-brand pl-6">
+                    <h3 className="font-display text-lg font-extrabold text-white">{lvl.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-white/65">{lvl.text}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -240,7 +269,7 @@ export default function HomePage() {
       {/* ============ CLIENTS ============ */}
       <section className="bg-white">
         <div className="container-x py-20 lg:py-24">
-          <div className="max-w-2xl">
+          <div className="max-w-2xl rule-top">
             <p className="eyebrow">{clients.eyebrow}</p>
             <h2 className="section-title mt-4">{clients.heading}</h2>
             <p className="mt-5 text-base leading-relaxed text-slate-body">{clients.intro}</p>
@@ -249,8 +278,9 @@ export default function HomePage() {
             {clients.items.map((c) => (
               <li
                 key={c}
-                className="border-b border-mist-line pb-3 text-sm font-semibold text-ink/80"
+                className="flex items-center gap-2.5 border-b border-mist-line pb-3 text-sm font-semibold text-ink"
               >
+                <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand" />
                 {c}
               </li>
             ))}
@@ -261,13 +291,15 @@ export default function HomePage() {
       {/* ============ TESTIMONIALS ============ */}
       <section className="bg-mist-light">
         <div className="container-x py-20 lg:py-24">
+          <div className="rule-top" />
           <p className="eyebrow">{testimonialSection.eyebrow}</p>
           <h2 className="section-title mt-4">{testimonialSection.heading}</h2>
 
           <div className="mt-12 grid gap-x-12 gap-y-10 lg:grid-cols-2">
             {testimonials.map((t) => (
-              <figure key={t.name}>
-                <blockquote className="text-sm italic leading-relaxed text-slate-body">
+              <figure key={t.name} className="rounded-xl border border-mist-line bg-white p-7">
+                <Icon.quote className="text-2xl text-brand/25" aria-hidden="true" />
+                <blockquote className="mt-3 text-sm italic leading-relaxed text-slate-body">
                   “{t.quote}”
                 </blockquote>
                 <figcaption className="mt-4 flex items-center gap-3 text-sm">
@@ -307,11 +339,9 @@ export default function HomePage() {
                 ))}
               </div>
 
-              <figure className="mt-8 border-l-2 border-brand pl-6">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand">
-                  {about.mission.label}
-                </p>
-                <blockquote className="mt-3 font-display text-lg font-semibold italic leading-relaxed text-ink">
+              <figure className="mt-8 rounded-2xl bg-ink p-7 sm:p-8">
+                <p className="eyebrow-light">{about.mission.label}</p>
+                <blockquote className="mt-4 font-display text-lg font-semibold italic leading-relaxed text-white">
                   “{about.mission.quote}”
                 </blockquote>
               </figure>
@@ -342,24 +372,24 @@ export default function HomePage() {
       </section>
 
       {/* ============ CONTACT ============ */}
-      <section id="contact" className="scroll-mt-20 border-t border-mist-line bg-mist-light">
+      <section id="contact" className="scroll-mt-20 border-t-4 border-brand bg-ink">
         <div className="container-x grid gap-12 py-20 lg:grid-cols-[1fr_1.15fr] lg:gap-16 lg:py-24">
           <div>
-            <p className="eyebrow">{contact.eyebrow}</p>
-            <h2 className="section-title mt-4">{contact.heading}</h2>
-            <p className="mt-5 text-base leading-relaxed text-slate-body">{contact.intro}</p>
+            <p className="eyebrow-light">{contact.eyebrow}</p>
+            <h2 className="section-title-light mt-4">{contact.heading}</h2>
+            <p className="mt-5 text-base leading-relaxed text-white/70">{contact.intro}</p>
 
             <div className="mt-10 border-l-2 border-brand pl-6">
-              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-brand">
+              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-brand-light">
                 {contact.guarantee.heading}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-body">
+              <p className="mt-3 text-sm leading-relaxed text-white/65">
                 {contact.guarantee.text}
               </p>
             </div>
           </div>
 
-          <div className="rounded-2xl border border-mist-line bg-white p-7 sm:p-9">
+          <div className="rounded-2xl bg-white p-7 shadow-lift sm:p-9">
             <ContactForm />
           </div>
         </div>

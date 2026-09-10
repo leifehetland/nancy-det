@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
-import { nav } from "@/lib/site";
+import { Icon } from "./Icons";
+import { nav, site } from "@/lib/site";
 
 /**
  * Minimal sticky header for the one-page site.
@@ -47,9 +48,31 @@ export default function Header() {
   }, []);
 
   return (
+    <>
+      {/* Slim navy strip. Reinstated in the colour pass — it puts brand navy at
+          the very top of the page and carries the email, which is currently the
+          only contact route. */}
+      <div className="bg-ink text-white">
+        <div className="container-x flex items-center justify-between gap-4 py-2 text-xs">
+          <p className="font-semibold tracking-wide text-white/80">
+            {site.tagline} <span className="text-white/30">·</span>{" "}
+            <span className="text-brand-light">{site.subTagline}</span>
+          </p>
+          {site.email && site.emailHref && (
+            <a
+              href={site.emailHref}
+              className="hidden items-center gap-1.5 text-white/80 hover:text-white sm:flex"
+            >
+              <Icon.mail className="text-brand-light" />
+              {site.email}
+            </a>
+          )}
+        </div>
+      </div>
+
     <header
       className={[
-        "sticky top-0 z-50 bg-white/90 backdrop-blur transition-shadow",
+        "sticky top-0 z-50 bg-white/95 backdrop-blur transition-shadow",
         scrolled ? "border-b border-mist-line shadow-sm" : "border-b border-transparent",
       ].join(" ")}
     >
@@ -122,5 +145,6 @@ export default function Header() {
         </div>
       )}
     </header>
+    </>
   );
 }
