@@ -46,12 +46,6 @@ export const Icon = {
       <circle cx="12" cy="10" r="3" />
     </Base>
   ),
-  clock: (p: IconProps) => (
-    <Base {...p}>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3 2" />
-    </Base>
-  ),
   users: (p: IconProps) => (
     <Base {...p}>
       <path d="M16 20v-1.5a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4V20" />
@@ -83,33 +77,10 @@ export const Icon = {
       <circle cx="12" cy="12" r="1.4" />
     </Base>
   ),
-  trend: (p: IconProps) => (
-    <Base {...p}>
-      <path d="m3 17 6-6 4 4 8-8" />
-      <path d="M15 7h6v6" />
-    </Base>
-  ),
   award: (p: IconProps) => (
     <Base {...p}>
       <circle cx="12" cy="9" r="6" />
       <path d="m8.5 14-1.5 8 5-3 5 3-1.5-8" />
-    </Base>
-  ),
-  shield: (p: IconProps) => (
-    <Base {...p}>
-      <path d="M12 22s8-3.5 8-10V5.5L12 2 4 5.5V12c0 6.5 8 10 8 10Z" />
-    </Base>
-  ),
-  dollar: (p: IconProps) => (
-    <Base {...p}>
-      <path d="M12 2v20" />
-      <path d="M17 6.5C17 4.6 14.8 3.5 12 3.5S7 4.6 7 6.5s2 2.8 5 3.5 5 1.6 5 3.5-2.2 3-5 3-5-1.1-5-3" />
-    </Base>
-  ),
-  book: (p: IconProps) => (
-    <Base {...p}>
-      <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22.5Z" />
-      <path d="M12 2v18" />
     </Base>
   ),
   building: (p: IconProps) => (
@@ -117,24 +88,6 @@ export const Icon = {
       <path d="M4 22V4a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v18" />
       <path d="M15 9h4a1 1 0 0 1 1 1v12M2 22h20" />
       <path d="M8 7h3M8 11h3M8 15h3" />
-    </Base>
-  ),
-  briefcase: (p: IconProps) => (
-    <Base {...p}>
-      <rect x="2" y="7" width="20" height="14" rx="2" />
-      <path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M2 13h20" />
-    </Base>
-  ),
-  pie: (p: IconProps) => (
-    <Base {...p}>
-      <path d="M12 3a9 9 0 1 0 9 9h-9Z" />
-      <path d="M15.5 2.5A9 9 0 0 1 21.5 8.5H15.5Z" />
-    </Base>
-  ),
-  sparkle: (p: IconProps) => (
-    <Base {...p}>
-      <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9Z" />
-      <path d="M19 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z" />
     </Base>
   ),
   check: (p: IconProps) => (

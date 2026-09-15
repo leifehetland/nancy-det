@@ -1,37 +1,28 @@
 /**
- * Section heading with the DET red rule. `align="center"` centers the rule and
- * shrinks it to a short tick, matching the "How We Help" / "Testimonials" rows.
+ * The eyebrow + heading + optional intro block that opens most sections.
+ *
+ * This pattern appeared six times in page.tsx with small drifts between
+ * copies. Centralising it means a change to section rhythm happens once.
+ *
+ * `rule-top` draws the short red rule above the eyebrow (see globals.css).
  */
 export default function SectionHeading({
+  eyebrow,
   title,
   intro,
-  align = "left",
-  tone = "ink",
-  as: Tag = "h2",
+  className = "max-w-2xl",
 }: {
+  eyebrow: string;
   title: string;
   intro?: string;
-  align?: "left" | "center";
-  tone?: "ink" | "brand";
-  as?: "h1" | "h2" | "h3";
+  className?: string;
 }) {
-  const centered = align === "center";
-
   return (
-    <div className={centered ? "mx-auto max-w-2xl text-center" : ""}>
-      <Tag
-        className={[
-          "font-display text-2xl font-extrabold tracking-tight sm:text-3xl",
-          tone === "brand" ? "text-brand" : "text-ink",
-          centered ? "rule-accent-center" : "rule-accent",
-        ].join(" ")}
-      >
-        {title}
-      </Tag>
+    <div className={`rule-top ${className}`}>
+      <p className="eyebrow">{eyebrow}</p>
+      <h2 className="section-title mt-4">{title}</h2>
       {intro && (
-        <p className={["prose-body", centered ? "mt-5 text-sm" : "mt-6"].join(" ")}>
-          {intro}
-        </p>
+        <p className="mt-5 prose-body">{intro}</p>
       )}
     </div>
   );

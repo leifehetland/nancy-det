@@ -67,13 +67,6 @@ body {
            focus-visible:outline-brand;
   }
 
-  .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-md border border-mist-line
-           bg-mist-light px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink
-           transition-colors hover:bg-mist
-           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
-           focus-visible:outline-ink;
-  }
 
   /* Outlined navy button, for a secondary action beside the red primary. */
   .btn-ghost {
@@ -103,16 +96,7 @@ body {
     @apply text-base leading-relaxed text-slate-body;
   }
 
-  /* Short red rule that sits under a section heading. */
-  .rule-accent::after {
-    content: "";
-    @apply mt-4 block h-[3px] w-full max-w-[560px] bg-brand;
-  }
 
-  .rule-accent-center::after {
-    content: "";
-    @apply mx-auto mt-4 block h-[3px] w-16 bg-brand;
-  }
 
   /* --- Surfaces ------------------------------------------------------ */
 
@@ -120,18 +104,8 @@ body {
     @apply rounded-xl border border-mist-line bg-mist-light p-6;
   }
 
-  .card-dark {
-    @apply rounded-xl bg-ink p-7 text-white shadow-lift;
-  }
 
-  .chip {
-    @apply flex items-center justify-center rounded-md border border-mist-line bg-white
-           px-3 py-3 text-center text-sm font-bold text-ink;
-  }
 
-  .icon-tile {
-    @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-tint text-brand;
-  }
 
 
   /* --- Colour pass helpers ------------------------------------------- */
@@ -152,8 +126,4 @@ body {
     @apply mb-5 block h-1 w-10 rounded-full bg-brand;
   }
 
-  .pill-badge {
-    @apply inline-flex items-center gap-2 rounded-md bg-brand-wash px-3 py-2
-           text-xs font-bold uppercase tracking-[0.14em] text-brand;
-  }
 }

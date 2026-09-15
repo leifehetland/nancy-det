@@ -62,7 +62,13 @@ export default function Footer() {
             {site.hq && (
               <li className="flex items-start gap-2 text-slate-body">
                 <Icon.pin className="mt-0.5 shrink-0 text-base text-brand" />
-                {site.hq}
+                <span>
+                  {site.hq}
+                  {/* Answers "is she too far away?" before anyone has to ask. */}
+                  <span className="mt-0.5 block text-xs text-slate-muted">
+                    {site.serviceArea}
+                  </span>
+                </span>
               </li>
             )}
           </ul>

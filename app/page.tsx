@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import Placeholder from "@/components/Placeholder";
+import SectionHeading from "@/components/SectionHeading";
 import { Icon } from "@/components/Icons";
 import {
   about,
@@ -37,7 +38,7 @@ export default function HomePage() {
               {hero.heading}
             </h1>
             <span aria-hidden="true" className="mt-7 block h-1 w-16 rounded-full bg-brand" />
-            <p className="mt-7 max-w-xl text-base leading-relaxed text-slate-body">
+            <p className="mt-7 max-w-xl prose-body">
               {hero.intro}
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
@@ -102,11 +103,11 @@ export default function HomePage() {
       {/* ============ APPROACH ============ */}
       <section id="approach" className="scroll-mt-20 bg-mist-light">
         <div className="container-x py-20 lg:py-24">
-          <div className="max-w-2xl rule-top">
-            <p className="eyebrow">{approach.eyebrow}</p>
-            <h2 className="section-title mt-4">{approach.heading}</h2>
-            <p className="mt-5 text-base leading-relaxed text-slate-body">{approach.intro}</p>
-          </div>
+          <SectionHeading
+            eyebrow={approach.eyebrow}
+            title={approach.heading}
+            intro={approach.intro}
+          />
 
           <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2">
             {approach.items.map((item) => {
@@ -144,11 +145,11 @@ export default function HomePage() {
       {/* ============ PROGRAMS ============ */}
       <section id="programs" className="scroll-mt-20 bg-white">
         <div className="container-x py-20 lg:py-24">
-          <div className="max-w-2xl rule-top">
-            <p className="eyebrow">{programs.eyebrow}</p>
-            <h2 className="section-title mt-4">{programs.heading}</h2>
-            <p className="mt-5 text-base leading-relaxed text-slate-body">{programs.intro}</p>
-          </div>
+          <SectionHeading
+            eyebrow={programs.eyebrow}
+            title={programs.heading}
+            intro={programs.intro}
+          />
 
           <div className="mt-14 space-y-6">
             {programs.items.map((p) => {
@@ -228,12 +229,15 @@ export default function HomePage() {
       <section id="students" className="scroll-mt-20 bg-mist-light">
         <div className="container-x py-20 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <div className="rule-top">
-              <p className="eyebrow">{students.eyebrow}</p>
-              <h2 className="section-title mt-4">{students.heading}</h2>
+            <div>
+              <SectionHeading
+                eyebrow={students.eyebrow}
+                title={students.heading}
+                className=""
+              />
               <div className="mt-6 space-y-4">
                 {students.paragraphs.map((p) => (
-                  <p key={p} className="text-base leading-relaxed text-slate-body">
+                  <p key={p} className="prose-body">
                     {p}
                   </p>
                 ))}
@@ -281,11 +285,11 @@ export default function HomePage() {
       {/* ============ CLIENTS ============ */}
       <section className="bg-white">
         <div className="container-x py-20 lg:py-24">
-          <div className="max-w-2xl rule-top">
-            <p className="eyebrow">{clients.eyebrow}</p>
-            <h2 className="section-title mt-4">{clients.heading}</h2>
-            <p className="mt-5 text-base leading-relaxed text-slate-body">{clients.intro}</p>
-          </div>
+          <SectionHeading
+            eyebrow={clients.eyebrow}
+            title={clients.heading}
+            intro={clients.intro}
+          />
           <ul className="mt-12 grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-3 lg:grid-cols-4">
             {clients.items.map((c) => (
               <li
@@ -303,9 +307,10 @@ export default function HomePage() {
       {/* ============ TESTIMONIALS ============ */}
       <section className="bg-mist-light">
         <div className="container-x py-20 lg:py-24">
-          <div className="rule-top" />
-          <p className="eyebrow">{testimonialSection.eyebrow}</p>
-          <h2 className="section-title mt-4">{testimonialSection.heading}</h2>
+          <SectionHeading
+            eyebrow={testimonialSection.eyebrow}
+            title={testimonialSection.heading}
+          />
 
           <div className="mt-12 grid gap-x-12 gap-y-10 lg:grid-cols-2">
             {testimonials.map((t) => (
@@ -345,7 +350,7 @@ export default function HomePage() {
 
               <div className="mt-6 space-y-4">
                 {about.paragraphs.map((p) => (
-                  <p key={p} className="text-base leading-relaxed text-slate-body">
+                  <p key={p} className="prose-body">
                     {p}
                   </p>
                 ))}

@@ -21,7 +21,6 @@
 // lines instead of printing a placeholder.
 export const site = {
   name: "Davis Executive Training",
-  shortName: "DET",
   tagline: "Improve Job Performance",
   subTagline: "Public Speaking & Leadership Mastery",
 
@@ -34,7 +33,6 @@ export const site = {
 
   // City only, confirmed by Nancy. No street address is published: the one
   // that turns up in third-party listings looks residential.
-  locations: "Birmingham, Alabama" as string | null,
   hq: "Based in Birmingham, Alabama" as string | null,
   // Travels for on-site work. Stated plainly so prospects outside Birmingham
   // do not assume they are out of range.
@@ -66,7 +64,7 @@ export const hero = {
   // "Build Success. Manage Better. Sell More."
   heading: "Be perceived the way you intend.",
   intro:
-    "The ability to think on one's feet is perhaps the major distinguishing characteristic of fast-track performers in today's competitive, communication conscious environment.",
+    "The ability to think on one’s feet is perhaps the major distinguishing characteristic of fast-track performers in today’s competitive, communication conscious environment.",
   primaryCta: { label: "Start a Conversation", href: "#contact" },
   secondaryCta: { label: "See the Programs", href: "#programs" },
   // Drop an /images/... path or an images.unsplash.com URL here to fill the
@@ -166,7 +164,7 @@ export const programs = {
       points: [
         "On-site, anywhere",
         "Maximum 12 participants",
-        "Built around your team's real presentations",
+        "Built around your team’s real presentations",
       ],
       featured: true,
     },
@@ -237,7 +235,7 @@ export const partner = {
   eyebrow: "Long-Standing Partner",
   name: "Ducks Unlimited",
   heading: "A partnership measured in decades",
-  text: "Ducks Unlimited has been a DET partner for many years, one of the longest-running relationships in the company's history. Training volunteer leaders and staff to speak persuasively for a cause they believe in is exactly the work this company was built to do.",
+  text: "Ducks Unlimited has been a DET partner for many years, one of the longest-running relationships in the company’s history. Training volunteer leaders and staff to speak persuasively for a cause they believe in is exactly the work this company was built to do.",
 };
 
 // ---------------------------------------------------------------------------
@@ -245,7 +243,7 @@ export const partner = {
 // ---------------------------------------------------------------------------
 
 export const clients = {
-  eyebrow: "You're In Good Company",
+  eyebrow: "You’re In Good Company",
   heading: "Organizations whose people have trained with DET",
   intro:
     "A partial listing of the companies and organizations whose executives, managers and sales people have benefited from the practical training taught in our workshops.",
@@ -317,7 +315,7 @@ export const about = {
   role: "Founder, Davis Executive Training",
   paragraphs: [
     "Nancy founded Davis Executive Training in 1988 and has spent the decades since as a charismatic, results-oriented trainer, coach and speaker specializing in executive communication and sales training.",
-    "She has trained managers, sales directors and senior executives at Fortune 500 companies, and built the company's programs for students and schools. She leads and delivers every DET program today.",
+    "She has trained managers, sales directors and senior executives at Fortune 500 companies, and built the company’s programs for students and schools. She leads and delivers every DET program today.",
   ],
   mission: {
     label: "Our Mission",
@@ -332,7 +330,7 @@ export const about = {
   imageAlt: "Nancy Davis",
   moe: {
     heading: "Remembering Moe",
-    text: "Nancy's late husband and DET co-founder, Eugene Moor “Moe” Davis, helped build this company and its methods over nearly four decades. He passed away in July 2026.",
+    text: "Nancy’s late husband and DET co-founder, Eugene Moor “Moe” Davis, helped build this company and its methods over nearly four decades. He passed away in July 2026.",
     linkLabel: "In Memoriam",
   },
 };
@@ -348,6 +346,11 @@ export const contact = {
     "Whether it is a team, one person, or a school, send a note and Nancy will get back to you. DET is based in Birmingham, Alabama and travels for on-site work.",
   form: {
     submit: "Send Inquiry",
+    // Deliberately not "team objectives": the form also serves individual
+    // coaching and school enquiries, and that label excluded both.
+    messageLabel: "What would you like to work on?",
+    messagePlaceholder:
+      "Group size, the presentations you struggle with, or dates you have in mind.",
     programs: [
       "In-House Workshop",
       "One-on-One Coaching",
@@ -413,8 +416,8 @@ export const memorial = {
   },
 
   wishes: {
-    heading: "The Family's Wishes",
-    text: "At Moe's request there was no funeral and no celebration of life. His family asks that friends and colleagues simply remember him as he lived.",
+    heading: "The Family’s Wishes",
+    text: "At Moe’s request there was no funeral and no celebration of life. His family asks that friends and colleagues simply remember him as he lived.",
   },
 
   continuity:

@@ -1,27 +1,34 @@
+import type { ReactNode } from "react";
+
 /**
- * The navy banner that opens every interior page.
+ * Navy banner that opens the interior pages (/in-memoriam, /privacy-policy).
+ *
+ * `meta` takes whatever belongs under the title on that page: dates and role
+ * on the memorial, a last-updated line on the policy.
  */
 export default function PageHero({
   eyebrow,
   title,
-  subtitle,
+  rule = false,
+  meta,
 }: {
   eyebrow: string;
   title: string;
-  subtitle?: string;
+  /** Short red rule between the title and the meta block. */
+  rule?: boolean;
+  meta?: ReactNode;
 }) {
   return (
     <section className="bg-ink text-white">
       <div className="container-x py-16 text-center md:py-20">
-        <p className="eyebrow">{eyebrow}</p>
-        <h1 className="mx-auto mt-5 max-w-4xl font-display text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-4xl lg:text-5xl">
+        <p className="eyebrow-light">{eyebrow}</p>
+        <h1 className="mx-auto mt-5 max-w-4xl font-display text-3xl font-extrabold leading-[1.15] tracking-tight sm:text-4xl lg:text-5xl">
           {title}
         </h1>
-        {subtitle && (
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/70">
-            {subtitle}
-          </p>
+        {rule && (
+          <span aria-hidden="true" className="mx-auto mt-7 block h-px w-16 bg-brand" />
         )}
+        {meta}
       </div>
     </section>
   );

@@ -45,8 +45,8 @@ export default function ContactForm() {
     } catch {
       setError(
         site.email
-          ? `We couldn't reach the server. Please email ${site.email} directly.`
-          : "We couldn't reach the server. Please try again shortly."
+          ? `We couldn’t reach the server. Please email ${site.email} directly.`
+          : "We couldn’t reach the server. Please try again shortly."
       );
       setStatus("error");
     }
@@ -161,13 +161,15 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className={label}>Tell Us About Your Team Objectives</label>
+        <label htmlFor="message" className={label}>
+          {contact.form.messageLabel}
+        </label>
         <textarea
           id="message"
           name="message"
           rows={5}
           disabled={busy}
-          placeholder="Provide details on team size, presentation challenges, or desired dates..."
+          placeholder={contact.form.messagePlaceholder}
           className={field}
         />
       </div>

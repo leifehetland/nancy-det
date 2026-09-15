@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageHero from "@/components/PageHero";
 import Placeholder from "@/components/Placeholder";
 import { memorial as m } from "@/lib/site";
 
@@ -18,19 +19,17 @@ export default function InMemoriamPage() {
   return (
     <>
       {/* ============ HERO ============ */}
-      <section className="bg-ink text-white">
-        <div className="container-x py-20 text-center md:py-28">
-          <p className="text-xs font-bold uppercase tracking-[0.28em] text-white/50">
-            {m.eyebrow}
-          </p>
-          <h1 className="mx-auto mt-7 max-w-3xl font-display text-3xl font-extrabold leading-[1.15] tracking-tight sm:text-4xl lg:text-5xl">
-            {m.name}
-          </h1>
-          <span aria-hidden="true" className="mx-auto mt-7 block h-px w-16 bg-brand" />
-          <p className="mt-7 text-base text-white/70">{m.dates}</p>
-          <p className="mt-1.5 text-sm text-white/60">{m.role}</p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow={m.eyebrow}
+        title={m.name}
+        rule
+        meta={
+          <>
+            <p className="mt-7 text-base text-white/70">{m.dates}</p>
+            <p className="mt-1.5 text-sm text-white/60">{m.role}</p>
+          </>
+        }
+      />
 
       {/* ============ PORTRAIT + INTRO ============ */}
       <section className="bg-white">
@@ -67,7 +66,7 @@ export default function InMemoriamPage() {
             </h2>
             <div className="mt-7 space-y-5">
               {m.life.paragraphs.map((p) => (
-                <p key={p} className="text-base leading-relaxed text-slate-body">
+                <p key={p} className="prose-body">
                   {p}
                 </p>
               ))}
@@ -78,7 +77,7 @@ export default function InMemoriamPage() {
             </h2>
             <div className="mt-7 space-y-5">
               {m.personal.paragraphs.map((p) => (
-                <p key={p} className="text-base leading-relaxed text-slate-body">
+                <p key={p} className="prose-body">
                   {p}
                 </p>
               ))}
@@ -107,7 +106,7 @@ export default function InMemoriamPage() {
               <h2 className="font-display text-lg font-extrabold tracking-tight text-ink">
                 {m.wishes.heading}
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-slate-body">{m.wishes.text}</p>
+              <p className="mt-4 prose-body">{m.wishes.text}</p>
             </div>
 
             <p className="mt-12 text-center text-sm leading-relaxed text-slate-muted">
