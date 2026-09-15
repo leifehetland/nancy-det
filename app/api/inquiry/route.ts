@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { parseInquiry } from "@/lib/inquiry";
-import { sendInquiry } from "@/lib/mailer";
+import { mailerStatus, sendInquiry } from "@/lib/mailer";
 
 // Node runtime, not Edge: the mail adapter needs full fetch/TLS behaviour, and
 // an SMTP-based adapter would need TCP sockets that the Edge runtime lacks.
@@ -26,6 +26,18 @@ function rateLimited(ip: string): boolean {
   if (hits.size > 5000) hits.clear();
 
   return recent.length > MAX_PER_WINDOW;
+}
+
+/**
+ * Diagnostic. Reports whether the mail environment variables are actually
+ * present in this deployment. Returns no secrets: only booleans, the key
+ * length, and the from/to addresses, which are already public on the site.
+ *
+ * The most common failure is forgetting to redeploy after adding env vars in
+ * Vercel, and this answers that in one request.
+ */
+export async function GET() {
+  return NextResponse.json({ ok: true, ...mailerStatus() });
 }
 
 export async function POST(request: Request) {
@@ -65,6 +77,9 @@ export async function POST(request: Request) {
         ok: false,
         error:
           "Sorry, we couldn't send that just now. Please email nancy@nancydavisexecutivetraining.com directly.",
+        // Short machine-readable reason, visible in the network tab. Not shown
+        // to the visitor, who only ever sees `error` above.
+        reason: sent.error,
       },
       { status: 502 }
     );

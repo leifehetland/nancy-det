@@ -30,6 +30,23 @@ export function mailerConfigured(): boolean {
   return Boolean(process.env.RESEND_API_KEY);
 }
 
+/**
+ * Non-secret view of the mail configuration, for the diagnostic GET handler.
+ * Never returns the key itself, only whether it is present and well-formed.
+ */
+export function mailerStatus() {
+  const key = process.env.RESEND_API_KEY ?? "";
+  return {
+    apiKeyPresent: Boolean(key),
+    apiKeyLooksValid: key.startsWith("re_"),
+    apiKeyLength: key.length,
+    // Whitespace pasted around a key is a common and invisible cause of 401s.
+    apiKeyHasWhitespace: key !== key.trim(),
+    from: process.env.INQUIRY_FROM ?? "onboarding@resend.dev (default)",
+    to: process.env.INQUIRY_TO ?? "nancy@nancydavisexecutivetraining.com (default)",
+  };
+}
+
 export async function sendInquiry(d: InquiryPayload): Promise<SendResult> {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.INQUIRY_TO ?? "nancy@nancydavisexecutivetraining.com";
@@ -60,7 +77,17 @@ export async function sendInquiry(d: InquiryPayload): Promise<SendResult> {
     if (!res.ok) {
       const detail = await res.text().catch(() => "");
       console.error(`[inquiry] Resend returned ${res.status}: ${detail}`);
-      return { ok: false, error: "send_failed" };
+
+      // Pass back a short, non-secret reason so the failure is diagnosable from
+      // the browser network tab rather than only from the server logs.
+      let reason = `resend_${res.status}`;
+      try {
+        const parsed = JSON.parse(detail);
+        if (parsed?.message) reason = parsed.message;
+      } catch {
+        /* detail was not JSON; the status code alone will do */
+      }
+      return { ok: false, error: reason };
     }
 
     return { ok: true };

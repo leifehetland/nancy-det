@@ -62,22 +62,42 @@ Gmail specifically. Option B is the one with the sharp edge.
 
 ## 2. Resend, for the contact form
 
-### The important realisation
+### How the account is set up, and why it matters
 
-The form notification email goes **only to Nancy**. No client ever sees it. So
-the "from" address on it does not affect how anyone perceives her business.
+The Resend account is registered under
+**nancy@nancydavisexecutivetraining.com**. That is deliberate, and it is what
+makes the current setup work.
 
-That means the zero risk configuration is simply:
+Resend will not let an account with no verified domain send to arbitrary
+recipients. It only permits sending to **the address that owns the account**.
+Registering the account under Nancy's address is what makes
+`INQUIRY_TO=nancy@nancydavisexecutivetraining.com` a legal recipient.
+
+(An earlier version of this document claimed `onboarding@resend.dev` worked
+with no setup at all. That was wrong, and it is what caused the 502s during
+setup. The sender was never the problem; the recipient was.)
+
+Working configuration:
 
 ```
-INQUIRY_FROM=onboarding@resend.dev
+RESEND_API_KEY=<key from THIS account, not any earlier one>
 INQUIRY_TO=nancy@nancydavisexecutivetraining.com
-RESEND_API_KEY=<the key>
+INQUIRY_FROM=onboarding@resend.dev
 ```
 
-No DNS changes, nothing to break, works immediately. `Reply-To` is already set
-to the person who filled in the form, so she just hits reply and the
-conversation continues from her real address.
+The notification only ever goes to Nancy, and `Reply-To` is set to whoever
+filled in the form, so the `resend.dev` sender is never seen by a client.
+
+### What this arrangement cannot do
+
+Because the domain is unverified, the app can only ever email Nancy. If you
+later want the site to send a "thanks, we got your message" confirmation to the
+person who filled in the form, that is a second recipient and it will be
+refused. That feature requires domain verification first.
+
+Ownership note: the account sits under Nancy's email, so password resets,
+billing notices and delivery alerts all go to her mailbox. That is correct for
+her business, but whoever maintains the site needs a way to see those.
 
 ### If she later wants it branded
 
@@ -96,7 +116,9 @@ v=spf1 include:<porkbun's existing include> include:<resend's include> ~all
 
 Copy the existing record first, merge, then replace. Do not add.
 
-Given the realisation above, there is no strong reason to do any of this.
+Verifying the domain would also remove the single-recipient limit above and
+let `INQUIRY_FROM` become `nancy@nancydavisexecutivetraining.com`. Worth doing
+eventually. Not urgent, since the form works without it.
 
 ---
 
