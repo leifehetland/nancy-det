@@ -88,8 +88,13 @@ export const hero = {
  * stranger sees.
  */
 export const quoteBand = {
+  // Lightly edited from how Nancy delivers it out loud. The spoken version
+  // ("do we not?", two exclamation marks) carries her timing and emphasis,
+  // which do not survive the move to print. This keeps her three beats, one
+  // voice throughout, and the closing clause that sets up the hero headline.
+  // Nancy should sign off on this wording, since her name sits under it.
   quote:
-    "We judge ourselves by our intentions, do we not? We judge others by their actions! What we see and what we hear is all we have to go on. It is what determines how we are perceived!",
+    "We judge ourselves by our intentions. We judge others by their actions. What we see and what we hear is all we have to go on, and it is what determines how we are perceived.",
   attribution: "Nancy Davis",
   attributionRole: "Founder, Davis Executive Training",
 };

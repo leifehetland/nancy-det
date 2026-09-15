@@ -116,6 +116,36 @@ live site. Details invented by the design reference — contact information, an
 "Atlanta & Birmingham" headquarters, a 24-hour response guarantee — have been
 removed. See the comment blocks in `lib/site.ts` for the specifics.
 
+## Accessibility and UX baseline
+
+The site passes axe-core (WCAG 2.1 A/AA + best practice) with **zero violations**
+at 1440px and 390px, on every page. If you change colours or markup, re-check it.
+
+Established in that pass, and easy to break by accident:
+
+- **Colour contrast.** See the comment block in `tailwind.config.ts`. Short
+  version: `bg-brand` for fills, `text-brand-dark` for red text on light,
+  `text-brand-light` for red text on navy. Plain `text-brand` fails AA on both
+  white (4.48:1) and navy (3.7:1). `slate-muted` was darkened to `#64748b`
+  because the old value was 2.56:1 on white.
+- **Tap targets** are at least 44px on mobile. Watch this when adding footer or
+  nav links, which default to text height.
+- **Skip link** is the first tab stop, targeting `<main id="main">`.
+- **`prefers-reduced-motion`** disables smooth scrolling and transitions.
+- **Form autofill**: `autoComplete` and `inputMode` are set on name, email,
+  phone and company. Any new field needs them too.
+
+## Assets
+
+- `app/icon.svg` is the favicon, a vector redraw of the logo's D mark. Verified
+  legible at 16px.
+- `public/og.png` is the 1200x630 social preview card, referenced from the
+  Open Graph and Twitter metadata in `app/layout.tsx`. Regenerate it if the
+  headline or positioning changes.
+- Structured data (`ProfessionalService` JSON-LD) is in `app/layout.tsx`. It
+  asserts only what we can stand behind: name, URL, email, Birmingham locality,
+  founder, founding year. No street address, phone or pricing.
+
 ## Design system
 
 Layout and component architecture follow the James Williams, LLC project
@@ -152,8 +182,10 @@ Reusable classes are defined in `app/globals.css`: `.container-x`, `.btn-primary
    - The old site's phone lives only inside an image with no alt text
      (`DET-call-300x227.png`), so it can't be read programmatically.
    - Birmingham is **Central** time, not Eastern.
-2. **Contact form** — `components/ContactForm.tsx` shows a confirmation state but
-   does not submit anywhere. Point `handleSubmit` at a real endpoint.
+2. **Contact form** — wired to Resend via `app/api/inquiry/route.ts`. Needs
+   `RESEND_API_KEY`, `INQUIRY_TO` and `INQUIRY_FROM` set in Vercel. See
+   **EMAIL-SETUP.md** for the full picture, including how Nancy sends and
+   receives as nancy@ and the SPF record trap to avoid.
 3. **Images** — every photo slot renders `components/Placeholder.tsx`, a labeled
    panel holding the right aspect ratio. Replace each with `next/image`:
    home hero, four "How We Help" portraits, the "A Better Approach" and
@@ -165,9 +197,9 @@ Reusable classes are defined in `app/globals.css`: `.container-x`, `.btn-primary
    sharper and smaller if one exists. Note that "EXECUTIVE TRAINING" is red on
    white inside the image, so the logo needs a light backing — the footer wraps
    it in a white card for this reason.
-5. **Legal pages** — the footer links to `/privacy-policy` and `/special-thanks`,
-   which don't exist yet.
-6. **Favicon** — add `app/favicon.ico` and the PNG icon set to `public/`.
+5. ~~Legal pages~~ — `/privacy-policy` now exists and describes what the site
+   actually does. Revisit it if analytics or any third-party embed is added.
+6. ~~Favicon~~ — `app/icon.svg` is in place.
 
 ## Fonts
 
