@@ -31,6 +31,15 @@ const config: Config = {
           tint: "#fee6e7",
           wash: "#fef4f4",
         },
+        // Success state, using Bootstrap's alert-success values. Kept separate
+        // from `brand` on purpose: red is the brand colour, but red on a
+        // confirmation reads as an error to anyone who has used the web.
+        success: {
+          DEFAULT: "#198754",
+          wash: "#d1e7dd",
+          line: "#a3cfbb",
+          ink: "#0f5132",
+        },
         mist: {
           DEFAULT: "#f1f5f9",
           light: "#f8fafc",

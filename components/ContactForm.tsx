@@ -63,15 +63,25 @@ export default function ContactForm() {
     return (
       <div
         role="status"
-        className="rounded-xl border border-brand/25 bg-brand-wash p-8 text-center"
+        className="rounded-xl border border-success-line bg-success-wash p-8 text-center"
       >
-        <p className="font-display text-lg font-extrabold text-ink">
+        <span
+          aria-hidden="true"
+          className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-success text-xl text-white"
+        >
+          <Icon.check />
+        </span>
+        <p className="mt-5 font-display text-lg font-extrabold text-success-ink">
           Thank you. Your inquiry is on its way.
         </p>
-        <p className="mt-2 text-sm text-slate-body">
+        <p className="mt-2 text-sm text-success-ink/90">
           Thanks for reaching out. We will follow up with you shortly.
         </p>
-        <button type="button" onClick={() => setStatus("idle")} className="btn-secondary mt-6">
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="mt-6 inline-flex min-h-[44px] items-center justify-center rounded-md border-2 border-success-ink/30 px-6 py-3 text-sm font-bold uppercase tracking-wide text-success-ink transition-colors hover:bg-success-ink hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success-ink"
+        >
           Send another inquiry
         </button>
       </div>
