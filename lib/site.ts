@@ -2,7 +2,12 @@
 // Davis Executive Training — single source of truth for all site copy.
 //
 // The site is a one-page brochure. Every section below maps to one block of
-// app/page.tsx, in order. The memorial at /in-memoriam is the only other page.
+// app/page.tsx, in order, except About Nancy: it is defined here after the
+// quote band but rendered on the page before it, above the quote. The
+// standalone /in-memoriam memorial page is disabled for now (see
+// app/_in-memoriam) — the `memorial` export below still feeds it, and the
+// QR code on the homepage's "Remembering Moe" section is the live memorial
+// link. /privacy-policy is the only other reachable page.
 //
 // Copy follows davisexecutivetraining.com where it still applies, revised per
 // Nancy's notes (Sept 2026). Removed in that pass, deliberately:
@@ -22,7 +27,7 @@
 export const site = {
   name: "Davis Executive Training",
   tagline: "Improve Job Performance",
-  subTagline: "Public Speaking & Leadership Mastery",
+  subTagline: "Public Speaking Mastery",
 
   // TODO: real number. Was "(800) 555-DET1" — a fabricated 555 number.
   phone: null as string | null,
@@ -45,10 +50,9 @@ export const site = {
 
 /** Anchor targets on the one-page site. Order matches the page. */
 export const nav = [
+  { label: "About", href: "#about" },
   { label: "Approach", href: "#approach" },
   { label: "Programs", href: "#programs" },
-  { label: "Students", href: "#students" },
-  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -64,16 +68,16 @@ export const hero = {
   // "Build Success. Manage Better. Sell More."
   heading: "Be perceived the way you intend.",
   intro:
-    "The ability to think on one’s feet is perhaps the major distinguishing characteristic of fast-track performers in today’s competitive, communication conscious environment.",
-  primaryCta: { label: "Start a Conversation", href: "#contact" },
+    "The ability to think on one’s feet is perhaps the major distinguishing characteristic of fast-track performers in today’s competitive, communication conscious environment. Get in touch to become a master of public speaking.",
+  primaryCta: { label: "Get In Touch", href: "#contact" },
   secondaryCta: { label: "See the Programs", href: "#programs" },
-  // Drop an /images/... path or an images.unsplash.com URL here to fill the
-  // slot. Stock photography is fine for this one — it is a generic scene.
-  image: null as string | null,
-  imageAlt: "A speaker addressing a small group of professionals",
+  // Square graphic, framed in its own dark card rather than cropped to a
+  // photo slot — see the hero markup in app/page.tsx.
+  image: "/images/public-speaking-graphic.png" as string | null,
+  imageAlt: "Public speaking is the #1 fear of adults today. No longer!",
   // Small navy credential strip under the hero.
   facts: [
-    { value: "1988", label: "Training since" },
+    { value: "1982", label: "Training since" },
     { value: "12", label: "Maximum group size" },
     { value: "On-site", label: "At your offices, anywhere" },
   ],
@@ -98,11 +102,48 @@ export const quoteBand = {
 };
 
 // ---------------------------------------------------------------------------
-// 2. Approach
+// 2. About Nancy
+//
+// Nancy leads. Moe is acknowledged briefly, with a QR code to his memorial
+// tribute page rather than a text link — this is now the highlight for him
+// on the site; the standalone /in-memoriam page is disabled (see
+// app/_in-memoriam).
+// ---------------------------------------------------------------------------
+
+export const about = {
+  eyebrow: "About",
+  heading: "Nancy Davis",
+  role: "Founder, Davis Executive Training",
+  paragraphs: [
+    "Davis Executive Training was founded in 1982 by Nancy Davis. She has spent decades as a charismatic, results-oriented trainer, coach, and speaker specializing in effective face to face communication training that will give future participants mastery of public speaking skills.",
+  ],
+  mission: {
+    label: "Our Mission",
+    quote:
+      "To give participants hands-on practice, honest feedback and the skills they need to succeed. Fear public speaking no more!",
+  },
+  cta: { label: "Work with Nancy", href: "#contact" },
+  // MUST be a real photograph of Nancy. Do NOT put stock photography here —
+  // a stock portrait labelled with a real person's name misrepresents her.
+  image: "/images/nancy-headshot.jpg" as string | null,
+  imageAlt: "Nancy Davis",
+  moe: {
+    heading: "Remembering Moe",
+    text: "Nancy’s late husband and DET co-founder, Eugene Moor “Moe” Davis, helped build this company and its methods over nearly four decades. He passed away in July 2026.",
+    // Plain header above the QR code below — no longer a link itself.
+    qrHeading: "In Memoriam",
+    qrCaption: "Scan to visit his memorial tribute page",
+    qrCode: "/images/qr-memorylinks-black.png",
+    qrAlt: "QR code to Moe Davis's memorial tribute page",
+  },
+};
+
+// ---------------------------------------------------------------------------
+// 3. Approach
 // ---------------------------------------------------------------------------
 
 export const approach = {
-  eyebrow: "The Approach",
+  eyebrow: "Skills You Will Learn",
   heading: "Small groups. Real practice. Skills you use the next day.",
   intro:
     "A major portion of your effectiveness lies in your ability to inform, influence, persuade and motivate. That is a set of skills, and skills can be taught.",
@@ -114,19 +155,13 @@ export const approach = {
     },
     {
       icon: "mic" as const,
-      title: "Control Over Anxiety",
+      title: "Control Anxiety",
       text: "Techniques to manage nerves and inhibition, so you can speak effectively in front of any size group without dreading it beforehand.",
-    },
-    {
-      icon: "video" as const,
-      // Nancy's note: "video feedback" was dated. This is what it really is.
-      title: "Private Session Recordings",
-      text: "Your sessions are recorded and kept private to you. Review them whenever you like, and bring back what you notice for another round of coaching and insight.",
     },
     {
       icon: "chat" as const,
       title: "Thinking On Your Feet",
-      text: "Handle questions, objections and the unscripted moment with composure, including how to run and control a Q&A rather than survive it.",
+      text: "Handle questions, objections and the unscripted moment with composure, including how to run and handle a Q&A rather than survive it.",
     },
   ],
 };
@@ -141,11 +176,14 @@ export const outcomes = {
     "Avoid death by PowerPoint",
     "Heighten interest when you speak",
     "Conduct and control question and answer sessions",
+    "Proper eye control",
+    "Energy and action",
+    "Volume control",
   ],
 };
 
 // ---------------------------------------------------------------------------
-// 3. Programs
+// 4. Programs
 //
 // In-house workshops and 1:1 coaching lead, per Nancy. Open enrollment is gone.
 // ---------------------------------------------------------------------------
@@ -160,93 +198,52 @@ export const programs = {
       icon: "building" as const,
       title: "In-House Workshops",
       lead: "Our most requested format.",
-      text: "A customized, participatory workshop delivered on-site at your organization, limited to a maximum of 12 participants. The content is shaped around your industry, your material and the skill level of your team.",
+      text: "A customized, participatory workshop delivered on-site, limited to a maximum of 12 and a minimum of 5 participants. The content is shaped around your industry, your material and the skill level of your team.",
       points: [
         "On-site, anywhere",
-        "Maximum 12 participants",
-        "Built around your team’s real presentations",
+        "Maximum of 12, minimum of 5 participants",
+        "Travel and lodging added at cost",
       ],
-      featured: true,
     },
     {
       icon: "target" as const,
-      title: "One-on-One Coaching",
+      title: "Personal Coaching",
       lead: "Private, focused, and entirely yours.",
-      text: "Individual coaching for a specific person and a specific goal: a keynote, a board presentation, an investor meeting, or simply becoming the person who speaks up well. Sessions are recorded privately for your own review.",
+      text: "Individual coaching for a specific person and a specific goal: a keynote, a board presentation, an investor meeting, or simply becoming a person who speaks up well.",
       points: [
-        "Fully private sessions",
-        "Built around one upcoming moment, or ongoing",
-        "Recordings kept for you to revisit",
+        "Video recorded feedback provided in-session for you to review",
+        "Built around one upcoming or a series of presentations",
       ],
-      featured: true,
     },
     {
       icon: "award" as const,
       title: "Seminars",
       lead: "How To Deliver Effective Presentations.",
-      text: "A one to three hour seminar concentrating on the physical skills required to make professional presentations. Fun, entertaining, fast paced and informative, with volunteers selected from the audience to take part. It works as a conference break-out session, or as a talk without audience participation.",
+      text: "A seminar concentrating on the physical skills required to make professional presentations. Fun, entertaining, fast paced and informative, with volunteers selected from the audience to take part.",
       points: [
-        "1–3 hours",
-        "Ideal as a conference break-out session",
-        "Audience participation optional",
+        "Improving your introduction and how to handle a Q&A.",
+        "Confidence building",
+        "Fun",
+        "Practical application",
+        "It is important to practice these skills",
+        "Sharpen existing skills and master the skills we teach"
       ],
-      featured: false,
     },
   ],
 };
 
 // ---------------------------------------------------------------------------
-// 4. Students & Schools
-// ---------------------------------------------------------------------------
-
-export const students = {
-  eyebrow: "Students & Schools",
-  heading: "The earlier you learn it, the further it carries you",
-  paragraphs: [
-    "In 1996, after years of clients asking whether their children could learn the same skills, Nancy began building communication training for young people, programming that strengthens public speaking and listening through direct, hands-on practice.",
-    "Since then DET has run programs for elementary schools, middle and high schools, and at the college level. It is some of the most rewarding work we do, and we are actively looking to do more of it.",
-  ],
-  levels: [
-    {
-      title: "Elementary",
-      text: "Early confidence in front of a group, listening skills, and the habit of speaking up.",
-    },
-    {
-      title: "Middle & High School",
-      text: "Presentations, class speeches, interviews and the poise to handle being watched.",
-    },
-    {
-      title: "College",
-      text: "Interview performance, thesis and capstone presentations, and the professional presence that gets graduates hired.",
-    },
-  ],
-  cta: { label: "Talk to us about your school", href: "#contact" },
-};
-
-// ---------------------------------------------------------------------------
-// 5. Ducks Unlimited partnership
+// 5. Proof — clients and testimonials
 //
-// NAME ONLY — no logo, wordmark or brand asset. Using their trademark needs
-// written permission from Ducks Unlimited. If Nancy obtains it, a logo can be
-// added here; until then this section stays typographic.
-// ---------------------------------------------------------------------------
-
-export const partner = {
-  eyebrow: "Long-Standing Partner",
-  name: "Ducks Unlimited",
-  heading: "A partnership measured in decades",
-  text: "Ducks Unlimited has been a DET partner for many years, one of the longest-running relationships in the company’s history. Training volunteer leaders and staff to speak persuasively for a cause they believe in is exactly the work this company was built to do.",
-};
-
-// ---------------------------------------------------------------------------
-// 6. Proof — clients and testimonials
+// Ducks Unlimited previously had its own dedicated partner section; folded
+// back into the clients list below as a bullet, alongside the rest.
 // ---------------------------------------------------------------------------
 
 export const clients = {
   eyebrow: "You’re In Good Company",
-  heading: "Organizations whose people have trained with DET",
+  heading: "Companies who have benefited from the skills we teach",
   intro:
-    "A partial listing of the companies and organizations whose executives, managers and sales people have benefited from the practical training taught in our workshops.",
+    "A partial listing of the companies and organizations who have benefited from these skills.",
   items: [
     "American Express",
     "IBM",
@@ -267,7 +264,7 @@ export const clients = {
     "Southern Bell",
     "Church of the Highlands",
     "Royal Cup Coffee",
-    "Jaycees",
+    "Davidson United Methodist Church",
   ],
 };
 
@@ -304,39 +301,7 @@ export const testimonials = [
 ];
 
 // ---------------------------------------------------------------------------
-// 7. About Nancy
-//
-// Nancy leads. Moe is acknowledged briefly and linked to the memorial page.
-// ---------------------------------------------------------------------------
-
-export const about = {
-  eyebrow: "About",
-  heading: "Nancy Davis",
-  role: "Founder, Davis Executive Training",
-  paragraphs: [
-    "Nancy founded Davis Executive Training in 1988 and has spent the decades since as a charismatic, results-oriented trainer, coach and speaker specializing in executive communication and sales training.",
-    "She has trained managers, sales directors and senior executives at Fortune 500 companies, and built the company’s programs for students and schools. She leads and delivers every DET program today.",
-  ],
-  mission: {
-    label: "Our Mission",
-    quote:
-      "To provide effective face to face communications training that will give you the same advantages top executives have known for years.",
-  },
-  cta: { label: "Work with Nancy", href: "#contact" },
-  // MUST be a real photograph of Nancy. Do NOT put stock photography here —
-  // a stock portrait labelled with a real person's name misrepresents her.
-  // Leave it null until she supplies a photo; the slot degrades gracefully.
-  image: null as string | null,
-  imageAlt: "Nancy Davis",
-  moe: {
-    heading: "Remembering Moe",
-    text: "Nancy’s late husband and DET co-founder, Eugene Moor “Moe” Davis, helped build this company and its methods over nearly four decades. He passed away in July 2026.",
-    linkLabel: "In Memoriam",
-  },
-};
-
-// ---------------------------------------------------------------------------
-// 8. Contact
+// 6. Contact
 // ---------------------------------------------------------------------------
 
 export const contact = {
@@ -353,7 +318,7 @@ export const contact = {
       "Group size, the presentations you struggle with, or dates you have in mind.",
     programs: [
       "In-House Workshop",
-      "One-on-One Coaching",
+      "Personal Coaching",
       "Seminar",
       "School or Student Program",
       "Not sure yet",
@@ -366,7 +331,11 @@ export const contact = {
 };
 
 // ---------------------------------------------------------------------------
-// In Memoriam — Eugene Moor "Moe" Davis (separate page at /in-memoriam)
+// In Memoriam — Eugene Moor "Moe" Davis
+//
+// Feeds two things: the QR-coded "Remembering Moe" section on the homepage
+// (about.moe), and this standalone page, currently disabled at
+// app/_in-memoriam rather than app/in-memoriam — see that file's header.
 //
 // Written from the obituary his family published on Legacy.com, in our own
 // words rather than reproduced from it.
@@ -421,7 +390,7 @@ export const memorial = {
   },
 
   continuity:
-    "Davis Executive Training continues under Nancy Davis, who founded the company in 1988.",
+    "Davis Executive Training continues under Nancy Davis, who founded the company in 1982.",
 
   source: {
     text: "This remembrance draws on the obituary published by his family.",

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 import Placeholder from "@/components/Placeholder";
 import SectionHeading from "@/components/SectionHeading";
@@ -9,12 +9,9 @@ import {
   clients,
   contact,
   hero,
-  memorial,
   outcomes,
-  partner,
   programs,
   quoteBand,
-  students,
   testimonialSection,
   testimonials,
 } from "@/lib/site";
@@ -22,9 +19,11 @@ import {
 /**
  * One-page brochure site.
  *
- * Section order matches lib/site.ts. The design is deliberately restrained:
- * type-led, few borders, red used as an accent rather than a fill. Section ids
- * are the anchor targets the header observes.
+ * Section order matches lib/site.ts, except About Nancy, which renders here
+ * right after the hero, above the quote band, rather than after it. The
+ * design is deliberately restrained: type-led, few borders, red used as an
+ * accent rather than a fill. Section ids are the anchor targets the header
+ * observes.
  */
 export default function HomePage() {
   return (
@@ -51,14 +50,30 @@ export default function HomePage() {
             </div>
           </div>
 
-          <Placeholder
-            label={hero.imageAlt}
-            src={hero.image}
-            priority
-            tone="dark"
-            rounded="rounded-2xl"
-            className="aspect-[4/5] w-full"
-          />
+          {hero.image ? (
+            // Square graphic, framed rather than cropped: a dark blue mat
+            // around the full image instead of the object-cover photo slot
+            // Placeholder uses elsewhere.
+            <div className="mx-auto w-full max-w-md rounded-2xl bg-ink p-4 shadow-lift sm:p-6 lg:mx-0 lg:max-w-none">
+              <Image
+                src={hero.image}
+                alt={hero.imageAlt}
+                width={2000}
+                height={2000}
+                priority
+                sizes="(max-width: 1024px) 90vw, 500px"
+                className="w-full rounded-lg"
+              />
+            </div>
+          ) : (
+            <Placeholder
+              label={hero.imageAlt}
+              priority
+              tone="dark"
+              rounded="rounded-2xl"
+              className="aspect-[4/5] w-full"
+            />
+          )}
         </div>
 
         {/* Navy credential strip — grounds the hero and brings brand colour in
@@ -67,7 +82,7 @@ export default function HomePage() {
           <div className="container-x grid divide-y divide-white/10 py-2 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {hero.facts.map((f) => (
               <div key={f.label} className="flex items-baseline gap-3 px-2 py-4 sm:justify-center">
-                <span className="font-display text-2xl font-extrabold text-brand-light">
+                <span className="whitespace-nowrap font-display text-2xl font-extrabold text-brand-light">
                   {f.value}
                 </span>
                 <span className="text-xs font-semibold uppercase tracking-[0.12em] text-white/60">
@@ -79,9 +94,48 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ============ ABOUT NANCY ============ */}
+      <section id="about" className="scroll-mt-24 bg-white">
+        <div className="container-x py-20 lg:py-24">
+          <div className="grid items-start gap-12 lg:grid-cols-[auto_1fr] lg:gap-16">
+            <Placeholder
+              label={about.imageAlt}
+              src={about.image}
+              rounded="rounded-2xl"
+              className="mx-auto aspect-[4/5] w-full max-w-xs lg:mx-0 lg:w-72"
+            />
+
+            <div>
+              <p className="eyebrow">{about.eyebrow}</p>
+              <h2 className="section-title mt-4">{about.heading}</h2>
+              <p className="mt-2 text-sm font-bold text-brand-dark">{about.role}</p>
+
+              <div className="mt-6 space-y-4">
+                {about.paragraphs.map((p) => (
+                  <p key={p} className="prose-body">
+                    {p}
+                  </p>
+                ))}
+              </div>
+
+              <figure className="mt-8 rounded-2xl bg-ink p-7 sm:p-8">
+                <p className="eyebrow-light">{about.mission.label}</p>
+                <blockquote className="mt-4 font-display text-lg font-semibold italic leading-relaxed text-white">
+                  “{about.mission.quote}”
+                </blockquote>
+              </figure>
+
+              <a href={about.cta.href} className="btn-primary mt-8 normal-case tracking-normal">
+                {about.cta.label}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ============ QUOTE BAND ============ */}
       {/* The quote moved out of the hero. It reads as the premise for the
-          Approach section that follows, rather than as an opening statement. */}
+          sections that follow, rather than as an opening statement. */}
       <section className="border-y-4 border-brand bg-ink">
         <div className="container-x py-16 lg:py-20">
           <figure className="mx-auto max-w-4xl text-center">
@@ -89,11 +143,14 @@ export default function HomePage() {
             <blockquote className="mt-6 font-display text-xl font-extrabold leading-[1.4] tracking-tight text-white sm:text-2xl lg:text-[1.9rem]">
               {quoteBand.quote}
             </blockquote>
-            <figcaption className="mt-7 flex items-center justify-center gap-3 text-sm">
-              <span aria-hidden="true" className="h-px w-8 bg-brand" />
+            <figcaption className="mt-7 flex flex-col items-center justify-center gap-3 text-sm sm:flex-row">
+              <span aria-hidden="true" className="h-px w-8 shrink-0 bg-brand" />
               <span>
                 <span className="font-bold text-white">{quoteBand.attribution}</span>
-                <span className="text-white/50"> · {quoteBand.attributionRole}</span>
+                <span className="block text-white/50 sm:inline">
+                  <span className="hidden sm:inline"> · </span>
+                  {quoteBand.attributionRole}
+                </span>
               </span>
             </figcaption>
           </figure>
@@ -101,7 +158,7 @@ export default function HomePage() {
       </section>
 
       {/* ============ APPROACH ============ */}
-      <section id="approach" className="scroll-mt-20 bg-mist-light">
+      <section id="approach" className="scroll-mt-24 bg-mist-light">
         <div className="container-x py-20 lg:py-24">
           <SectionHeading
             eyebrow={approach.eyebrow}
@@ -109,17 +166,19 @@ export default function HomePage() {
             intro={approach.intro}
           />
 
-          <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2">
+          <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-3">
             {approach.items.map((item) => {
               const Glyph = Icon[item.icon];
               return (
                 <div key={item.title}>
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-tint text-brand">
-                    <Glyph />
-                  </span>
-                  <h3 className="mt-5 font-display text-lg font-extrabold text-ink">
-                    {item.title}
-                  </h3>
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-tint text-brand">
+                      <Glyph />
+                    </span>
+                    <h3 className="font-display text-lg font-extrabold text-ink">
+                      {item.title}
+                    </h3>
+                  </div>
                   <p className="mt-2.5 text-sm leading-relaxed text-slate-body">{item.text}</p>
                 </div>
               );
@@ -143,7 +202,7 @@ export default function HomePage() {
       </section>
 
       {/* ============ PROGRAMS ============ */}
-      <section id="programs" className="scroll-mt-20 bg-white">
+      <section id="programs" className="scroll-mt-24 bg-white">
         <div className="container-x py-20 lg:py-24">
           <SectionHeading
             eyebrow={programs.eyebrow}
@@ -157,62 +216,27 @@ export default function HomePage() {
               return (
                 <article
                   key={p.title}
-                  className={[
-                    "grid gap-6 rounded-xl p-7 sm:grid-cols-[auto_1fr] sm:gap-8 sm:p-9",
-                    p.featured
-                      ? "bg-ink text-white"
-                      : "border border-mist-line bg-mist-light text-ink",
-                  ].join(" ")}
+                  className="grid gap-6 rounded-xl bg-ink p-7 text-white sm:grid-cols-[auto_1fr] sm:gap-8 sm:p-9"
                 >
-                  <span
-                    className={[
-                      "flex h-12 w-12 items-center justify-center rounded-lg text-lg",
-                      p.featured ? "bg-brand text-white" : "bg-brand-tint text-brand",
-                    ].join(" ")}
-                  >
+                  <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-brand text-lg text-white">
                     <Glyph />
                   </span>
 
                   <div>
-                    <h3
-                      className={[
-                        "font-display text-xl font-extrabold",
-                        p.featured ? "text-white" : "text-ink",
-                      ].join(" ")}
-                    >
+                    <h3 className="font-display text-xl font-extrabold text-white">
                       {p.title}
                     </h3>
-                    <p
-                      className={[
-                        "mt-1 text-sm font-bold",
-                        p.featured ? "text-brand-light" : "text-brand-dark",
-                      ].join(" ")}
-                    >
-                      {p.lead}
-                    </p>
-                    <p
-                      className={[
-                        "mt-4 max-w-2xl text-sm leading-relaxed",
-                        p.featured ? "text-white/70" : "text-slate-body",
-                      ].join(" ")}
-                    >
+                    <p className="mt-1 text-sm font-bold text-brand-light">{p.lead}</p>
+                    <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/70">
                       {p.text}
                     </p>
-                    <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+                    <ul className="mt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6">
                       {p.points.map((pt) => (
                         <li
                           key={pt}
-                          className={[
-                            "flex items-center gap-2 text-xs font-semibold",
-                            p.featured ? "text-white/85" : "text-ink/80",
-                          ].join(" ")}
+                          className="flex items-start gap-2 text-xs font-semibold leading-snug text-white/85"
                         >
-                          <Icon.check
-                            className={[
-                              "shrink-0 text-sm",
-                              p.featured ? "text-brand-light" : "text-brand-dark",
-                            ].join(" ")}
-                          />
+                          <Icon.check className="mt-px shrink-0 text-sm text-brand-light" />
                           {pt}
                         </li>
                       ))}
@@ -221,63 +245,6 @@ export default function HomePage() {
                 </article>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ============ STUDENTS & SCHOOLS ============ */}
-      <section id="students" className="scroll-mt-20 bg-mist-light">
-        <div className="container-x py-20 lg:py-24">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <SectionHeading
-                eyebrow={students.eyebrow}
-                title={students.heading}
-                className=""
-              />
-              <div className="mt-6 space-y-4">
-                {students.paragraphs.map((p) => (
-                  <p key={p} className="prose-body">
-                    {p}
-                  </p>
-                ))}
-              </div>
-              <a href={students.cta.href} className="btn-primary mt-8 normal-case tracking-normal">
-                {students.cta.label}
-              </a>
-            </div>
-
-            <div className="rounded-2xl bg-ink p-8 sm:p-9">
-              <div className="space-y-7">
-                {students.levels.map((lvl) => (
-                  <div key={lvl.title} className="border-l-2 border-brand pl-6">
-                    <h3 className="font-display text-lg font-extrabold text-white">{lvl.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-white/65">{lvl.text}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ PARTNER ============ */}
-      <section className="bg-ink">
-        <div className="container-x py-16 lg:py-20">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-light">
-              {partner.eyebrow}
-            </p>
-            {/* Name only — no Ducks Unlimited logo or brand mark without their
-                written permission. Set as type so it reads as a statement. */}
-            <p className="mt-6 font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              {partner.name}
-            </p>
-            <span aria-hidden="true" className="mx-auto mt-6 block h-px w-12 bg-brand" />
-            <h2 className="mt-6 font-display text-lg font-extrabold text-white/90">
-              {partner.heading}
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-white/60">{partner.text}</p>
           </div>
         </div>
       </section>
@@ -314,13 +281,13 @@ export default function HomePage() {
 
           <div className="mt-12 grid gap-x-12 gap-y-10 lg:grid-cols-2">
             {testimonials.map((t) => (
-              <figure key={t.name} className="rounded-xl border border-mist-line bg-white p-7">
+              <figure key={t.name} className="rounded-xl border border-mist-line bg-white p-6 sm:p-7">
                 <Icon.quote className="text-2xl text-brand/25" aria-hidden="true" />
                 <blockquote className="mt-3 text-sm italic leading-relaxed text-slate-body">
                   “{t.quote}”
                 </blockquote>
-                <figcaption className="mt-4 flex items-center gap-3 text-sm">
-                  <span aria-hidden="true" className="h-px w-6 bg-brand" />
+                <figcaption className="mt-4 flex items-start gap-3 text-sm">
+                  <span aria-hidden="true" className="mt-2.5 h-px w-6 shrink-0 bg-brand" />
                   <span>
                     <span className="font-bold text-ink">{t.name}</span>
                     <span className="text-slate-muted"> · {t.role}</span>
@@ -332,64 +299,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ============ ABOUT NANCY ============ */}
-      <section id="about" className="scroll-mt-20 bg-white">
-        <div className="container-x py-20 lg:py-24">
-          <div className="grid items-start gap-12 lg:grid-cols-[auto_1fr] lg:gap-16">
-            <Placeholder
-              label={about.imageAlt}
-              src={about.image}
-              rounded="rounded-2xl"
-              className="mx-auto aspect-[4/5] w-full max-w-xs lg:mx-0 lg:w-72"
-            />
-
-            <div>
-              <p className="eyebrow">{about.eyebrow}</p>
-              <h2 className="section-title mt-4">{about.heading}</h2>
-              <p className="mt-2 text-sm font-bold text-brand">{about.role}</p>
-
-              <div className="mt-6 space-y-4">
-                {about.paragraphs.map((p) => (
-                  <p key={p} className="prose-body">
-                    {p}
-                  </p>
-                ))}
-              </div>
-
-              <figure className="mt-8 rounded-2xl bg-ink p-7 sm:p-8">
-                <p className="eyebrow-light">{about.mission.label}</p>
-                <blockquote className="mt-4 font-display text-lg font-semibold italic leading-relaxed text-white">
-                  “{about.mission.quote}”
-                </blockquote>
-              </figure>
-
-              <a href={about.cta.href} className="btn-primary mt-8 normal-case tracking-normal">
-                {about.cta.label}
-              </a>
-
-              {/* Moe, acknowledged briefly with a route to the full memorial. */}
-              <div className="mt-12 border-t border-mist-line pt-8">
-                <h3 className="font-display text-base font-extrabold text-ink">
-                  {about.moe.heading}
-                </h3>
-                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-body">
-                  {about.moe.text}
-                </p>
-                <Link
-                  href={memorial.href}
-                  className="mt-4 inline-flex min-h-[44px] items-center gap-1.5 text-sm font-bold text-brand-dark hover:text-brand"
-                >
-                  {about.moe.linkLabel}
-                  <Icon.chevron className="text-xs" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ============ CONTACT ============ */}
-      <section id="contact" className="scroll-mt-20 border-t-4 border-brand bg-ink">
+      <section id="contact" className="scroll-mt-24 border-t-4 border-brand bg-ink">
         <div className="container-x grid gap-12 py-20 lg:grid-cols-[1fr_1.15fr] lg:gap-16 lg:py-24">
           <div>
             <p className="eyebrow-light">{contact.eyebrow}</p>
@@ -406,8 +317,37 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-white p-7 shadow-lift sm:p-9">
+          <div className="rounded-2xl bg-white p-5 shadow-lift sm:p-9">
             <ContactForm />
+          </div>
+        </div>
+      </section>
+
+      {/* ============ REMEMBERING MOE ============ */}
+      {/* Raised to full section weight and given its own white ground, rather
+          than stacking directly under Contact's navy — this is now the
+          highlight for Moe on the site, not a footnote below it. The QR gets
+          the dark card instead, so it reads as the focal point. */}
+      <section className="border-t-4 border-brand bg-white">
+        <div className="container-x grid items-center gap-12 py-20 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:py-24">
+          <div>
+            <p className="eyebrow">In Memoriam</p>
+            <h2 className="section-title mt-4">{about.moe.heading}</h2>
+            <p className="mt-5 max-w-xl prose-body">{about.moe.text}</p>
+          </div>
+
+          <div className="mx-auto w-full max-w-xs rounded-2xl bg-ink p-7 text-center shadow-lift sm:p-9">
+            <h3 className="eyebrow-light">{about.moe.qrHeading}</h3>
+            <div className="mx-auto mt-5 w-fit rounded-xl bg-white p-3">
+              <Image
+                src={about.moe.qrCode}
+                alt={about.moe.qrAlt}
+                width={820}
+                height={820}
+                className="h-40 w-40 sm:h-44 sm:w-44"
+              />
+            </div>
+            <p className="mt-5 text-sm leading-relaxed text-white/65">{about.moe.qrCaption}</p>
           </div>
         </div>
       </section>

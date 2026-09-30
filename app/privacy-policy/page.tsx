@@ -97,7 +97,7 @@ export default function PrivacyPolicyPage() {
                 {site.email && site.emailHref ? (
                   <a
                     href={site.emailHref}
-                    className="font-semibold text-brand-dark underline underline-offset-4"
+                    className="font-semibold text-brand-dark underline underline-offset-4 [overflow-wrap:anywhere]"
                   >
                     {site.email}
                   </a>

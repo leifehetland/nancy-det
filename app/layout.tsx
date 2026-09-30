@@ -75,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 addressCountry: "US",
               },
               founder: { "@type": "Person", name: "Nancy Davis" },
-              foundingDate: "1988",
+              foundingDate: "1982",
               knowsAbout: [
                 "Public speaking",
                 "Executive communication",

@@ -52,8 +52,9 @@ export default function ContactForm() {
     }
   }
 
+  // text-base below sm: iOS Safari zooms the page into any field under 16px.
   const field =
-    "mt-1.5 w-full rounded-md border border-mist-line bg-white px-3.5 py-3 text-sm text-ink min-h-[44px] " +
+    "mt-1.5 w-full rounded-md border border-mist-line bg-white px-3.5 py-3 text-base text-ink min-h-[44px] sm:text-sm " +
     "placeholder:text-slate-muted focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25 " +
     "disabled:opacity-60";
   const label = "block text-[11px] font-bold uppercase tracking-[0.12em] text-ink";
@@ -89,7 +90,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-7 space-y-5" noValidate>
+    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
       {/* Honeypot. Hidden from people, irresistible to bots. Not `display:none`,
           which some bots skip. Off-screen with aria-hidden works better. */}
       <div aria-hidden="true" className="absolute left-[-9999px] top-0 h-0 w-0 overflow-hidden">

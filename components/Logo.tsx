@@ -2,10 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 // The supplied artwork: a red field with the "Davis" script and the D mark,
-// with "EXECUTIVE TRAINING" set in red beneath it. Intrinsic size 2550x547.
-const LOGO_SRC = "/images/det-logo.jpg";
-const LOGO_W = 2550;
-const LOGO_H = 547;
+// with "EXECUTIVE TRAINING" set in red beneath it. Intrinsic size 1041x546 —
+// the cropped file. The full-bleed original (det-logo.jpg) is 2550x547 and
+// carries a long empty red field to the left of the mark, which is why the
+// header uses the crop.
+const LOGO_SRC = "/images/det-logo-smaller.jpg";
+const LOGO_W = 1041;
+const LOGO_H = 546;
 const LOGO_ALT = "Davis Executive Training";
 
 /**
@@ -29,7 +32,7 @@ export function Wordmark({
       width={LOGO_W}
       height={LOGO_H}
       priority={priority}
-      sizes="(max-width: 640px) 220px, 320px"
+      sizes="(max-width: 640px) 160px, 220px"
       className={className}
     />
   );
@@ -58,20 +61,18 @@ export default function Logo({
     <Link
       href="/"
       aria-label="Davis Executive Training home"
-      className="flex shrink-0 items-center gap-3 2xl:gap-4"
+      className="flex shrink-0 items-center gap-2.5 2xl:gap-3"
     >
-      <Wordmark priority className="h-auto w-44 sm:w-56 xl:w-52 2xl:w-60" />
-      <span className="hidden h-12 w-px bg-mist-line sm:block xl:hidden 2xl:block" />
-      <span className="hidden leading-tight sm:block xl:hidden 2xl:block">
+      {/* Sized by height, not width, so the mark stays level with the
+          divider and the two lines of type beside it. */}
+      <Wordmark priority className="h-12 w-auto sm:h-14" />
+      <span className="hidden h-10 w-px bg-mist-line sm:block" />
+      <span className="hidden leading-tight sm:block">
         <span className="block font-display text-base font-extrabold text-ink">
-          Improve Job
-          <br />
-          Performance
+          Improve Job Performance
         </span>
         <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-muted">
-          Public Speaking &amp;
-          <br />
-          Leadership Mastery
+          Public Speaking Mastery
         </span>
       </span>
     </Link>

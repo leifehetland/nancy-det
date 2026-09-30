@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Wordmark } from "./Logo";
 import { Icon } from "./Icons";
-import { footer, memorial, site } from "@/lib/site";
+import { footer, site } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -24,15 +24,10 @@ export default function Footer() {
                 </a>
               </li>
             ))}
-            <li>
-              <Link href={memorial.href} className="flex min-h-[44px] items-center text-slate-body hover:text-brand-dark lg:min-h-0 lg:py-1">
-                {memorial.navLabel}
-              </Link>
-            </li>
           </ul>
         </div>
 
-        <div>
+        <div className="min-w-0">
           <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-ink">
             {footer.touchHeading}
           </h2>
@@ -44,7 +39,7 @@ export default function Footer() {
                   className="inline-flex min-h-[44px] items-center gap-2 text-slate-body hover:text-brand-dark"
                 >
                   <Icon.mail className="mt-0.5 shrink-0 text-base text-brand" />
-                  <span>
+                  <span className="min-w-0 [overflow-wrap:anywhere]">
                     {site.email.split("@")[0]}@<wbr />
                     {site.email.split("@")[1]}
                   </span>
@@ -53,7 +48,7 @@ export default function Footer() {
             )}
             {site.phone && site.phoneHref && (
               <li>
-                <a href={site.phoneHref} className="inline-flex items-center gap-2 text-slate-body hover:text-brand">
+                <a href={site.phoneHref} className="inline-flex min-h-[44px] items-center gap-2 text-slate-body hover:text-brand-dark">
                   <Icon.phone className="shrink-0 text-base text-brand" />
                   {site.phone}
                 </a>

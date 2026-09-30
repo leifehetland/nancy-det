@@ -1,3 +1,9 @@
+// DISABLED — moved out of app/in-memoriam into this underscore-prefixed
+// folder, which Next's App Router excludes from routing, so the page is not
+// reachable. The "Remembering Moe" section on the homepage now carries the
+// QR code to his memorial tribute page instead. To bring this page back:
+// `git mv app/_in-memoriam app/in-memoriam`, restore the footer link in
+// components/Footer.tsx, and re-add the /in-memoriam entry to app/sitemap.ts.
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Placeholder from "@/components/Placeholder";
