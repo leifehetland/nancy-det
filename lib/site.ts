@@ -14,8 +14,9 @@
 //   - Financial services training, in full. Her license is not being renewed
 //     and the CEU credits have lapsed.
 //   - Open enrollment workshops. Not offered.
-//   - The phrase "video feedback", replaced throughout by private session
-//     recordings, which is what it actually is.
+//   - The phrase "video feedback". Sessions are recorded and played back in
+//     the room only; recordings are NOT given to participants afterward, so
+//     never promise one they keep.
 // ---------------------------------------------------------------------------
 
 // Contact details.
@@ -44,6 +45,9 @@ export const site = {
   serviceArea: "Available on-site nationwide",
   hours: null as string | null,
 
+  // Footer blurb. Location is left to the footer's Get in touch column.
+  summary:
+    "Davis Executive Training helps executives, managers, sales professionals and students speak with clarity, confidence and presence.",
   description:
     "Davis Executive Training helps executives, managers, sales professionals and students speak with clarity, confidence and presence. Based in Birmingham, Alabama, available on-site nationwide.",
 };
@@ -51,7 +55,7 @@ export const site = {
 /** Anchor targets on the one-page site. Order matches the page. */
 export const nav = [
   { label: "About", href: "#about" },
-  { label: "Approach", href: "#approach" },
+  { label: "Method", href: "#method" },
   { label: "Programs", href: "#programs" },
   { label: "Contact", href: "#contact" },
 ];
@@ -68,23 +72,23 @@ export const hero = {
   // "Build Success. Manage Better. Sell More."
   heading: "Be perceived the way you intend.",
   intro:
-    "The ability to think on one’s feet is perhaps the major distinguishing characteristic of fast-track performers in today’s competitive, communication conscious environment. Get in touch to become a master of public speaking.",
-  primaryCta: { label: "Get In Touch", href: "#contact" },
-  secondaryCta: { label: "See the Programs", href: "#programs" },
+    "Thinking on your feet is what sets fast-track performers apart. It is a skill, and Nancy Davis has been teaching it since 1982.",
+  primaryCta: { label: "Get in touch", href: "#contact" },
+  secondaryCta: { label: "See the programs", href: "#programs" },
   // Square graphic, framed in its own dark card rather than cropped to a
   // photo slot — see the hero markup in app/page.tsx.
   image: "/images/public-speaking-graphic.png" as string | null,
   imageAlt: "Public speaking is the #1 fear of adults today. No longer!",
   // Small navy credential strip under the hero.
   facts: [
-    { value: "1982", label: "Training since" },
-    { value: "12", label: "Maximum group size" },
-    { value: "On-site", label: "At your offices, anywhere" },
+    { value: "1982", label: "Founded" },
+    { value: "12", label: "Max group size" },
+    { value: "On-site", label: "Nationwide, at your offices" },
   ],
 };
 
 /**
- * Full-width navy pull-quote between the hero and the Approach section.
+ * Full-width navy pull-quote between the hero and the Method section.
  * Moved out of the hero: it is the premise the training rests on, which reads
  * far better as the lead-in to "how we work" than as the first thing a
  * stranger sees.
@@ -115,7 +119,7 @@ export const about = {
   heading: "Nancy Davis",
   role: "Founder, Davis Executive Training",
   paragraphs: [
-    "Davis Executive Training was founded in 1982 by Nancy Davis. She has spent decades as a charismatic, results-oriented trainer, coach, and speaker specializing in effective face to face communication training that will give future participants mastery of public speaking skills.",
+    "Nancy Davis founded Davis Executive Training in 1982. She is a charismatic, results-oriented trainer, coach and speaker who specializes in face-to-face communication, and she has spent more than four decades helping people master public speaking.",
   ],
   mission: {
     label: "Our Mission",
@@ -127,26 +131,29 @@ export const about = {
   // a stock portrait labelled with a real person's name misrepresents her.
   image: "/images/nancy-headshot.jpg" as string | null,
   imageAlt: "Nancy Davis",
+  imageCaption: "Nancy Davis in a Davis Executive Training workshop",
   moe: {
+    // Dates rather than "In Memoriam", which the QR card already carries.
+    eyebrow: "1946 – 2026",
     heading: "Remembering Moe",
-    text: "Nancy’s late husband and DET co-founder, Eugene Moor “Moe” Davis, helped build this company and its methods over nearly four decades. He passed away in July 2026.",
+    text: "Nancy’s late husband, Eugene Moor “Moe” Davis, helped build this company and its methods over nearly four decades. He passed away in July 2026.",
     // Plain header above the QR code below — no longer a link itself.
     qrHeading: "In Memoriam",
-    qrCaption: "Scan to visit his memorial tribute page",
+    qrCaption: "Scan to visit his memorial page",
     qrCode: "/images/qr-memorylinks-black.png",
     qrAlt: "QR code to Moe Davis's memorial tribute page",
   },
 };
 
 // ---------------------------------------------------------------------------
-// 3. Approach
+// 3. Method
 // ---------------------------------------------------------------------------
 
-export const approach = {
-  eyebrow: "Skills You Will Learn",
+export const method = {
+  eyebrow: "How It Works",
   heading: "Small groups. Real practice. Skills you use the next day.",
   intro:
-    "A major portion of your effectiveness lies in your ability to inform, influence, persuade and motivate. That is a set of skills, and skills can be taught.",
+    "Your effectiveness depends on your ability to inform, influence, persuade and motivate. Those are skills, and skills can be taught.",
   items: [
     {
       icon: "users" as const,
@@ -160,7 +167,7 @@ export const approach = {
     },
     {
       icon: "chat" as const,
-      title: "Thinking On Your Feet",
+      title: "Thinking on Your Feet",
       text: "Handle questions, objections and the unscripted moment with composure, including how to run and handle a Q&A rather than survive it.",
     },
   ],
@@ -169,16 +176,16 @@ export const approach = {
 export const outcomes = {
   heading: "What you walk away with",
   items: [
+    // Verb-first and parallel. Anxiety is covered by the Method cards above.
     "Sell yourself and your ideas",
-    "Speak effectively before any size group",
-    "Improve job performance and production",
-    "Control anxiety and inhibition",
+    "Speak well before any size group",
+    "Improve your job performance",
     "Avoid death by PowerPoint",
-    "Heighten interest when you speak",
-    "Conduct and control question and answer sessions",
-    "Proper eye control",
-    "Energy and action",
-    "Volume control",
+    "Hold your audience’s interest",
+    "Run Q&A sessions with control",
+    "Use eye contact with purpose",
+    "Bring energy to the room",
+    "Control your volume",
   ],
 };
 
@@ -197,8 +204,8 @@ export const programs = {
     {
       icon: "building" as const,
       title: "In-House Workshops",
-      lead: "Our most requested format.",
-      text: "A customized, participatory workshop delivered on-site, limited to a maximum of 12 and a minimum of 5 participants. The content is shaped around your industry, your material and the skill level of your team.",
+      lead: "Our most requested format",
+      text: "A customized, participatory workshop delivered at your location. The content is shaped around your industry, your material and your team’s skill level.",
       points: [
         "On-site, anywhere",
         "Maximum of 12, minimum of 5 participants",
@@ -208,25 +215,23 @@ export const programs = {
     {
       icon: "target" as const,
       title: "Personal Coaching",
-      lead: "Private, focused, and entirely yours.",
+      lead: "Private, focused and entirely yours",
       text: "Individual coaching for a specific person and a specific goal: a keynote, a board presentation, an investor meeting, or simply becoming a person who speaks up well.",
       points: [
-        "Video recorded feedback provided in-session for you to review",
-        "Built around one upcoming or a series of presentations",
+        "Video playback reviewed together during the session",
+        "Built around one presentation or a whole series",
       ],
     },
     {
       icon: "award" as const,
       title: "Seminars",
-      lead: "How To Deliver Effective Presentations.",
-      text: "A seminar concentrating on the physical skills required to make professional presentations. Fun, entertaining, fast paced and informative, with volunteers selected from the audience to take part.",
+      lead: "How to deliver effective presentations",
+      text: "A seminar on the physical skills of professional presenting. Fun, fast-paced and informative, with volunteers from the audience taking part.",
       points: [
-        "Improving your introduction and how to handle a Q&A.",
+        "Stronger openings",
+        "Handling Q&A",
         "Confidence building",
-        "Fun",
-        "Practical application",
-        "It is important to practice these skills",
-        "Sharpen existing skills and master the skills we teach"
+        "Hands-on practice",
       ],
     },
   ],
@@ -241,9 +246,9 @@ export const programs = {
 
 export const clients = {
   eyebrow: "You’re In Good Company",
-  heading: "Companies who have benefited from the skills we teach",
+  heading: "Organizations we’ve trained",
   intro:
-    "A partial listing of the companies and organizations who have benefited from these skills.",
+    "A partial list of the companies and organizations whose people have trained with us.",
   items: [
     "American Express",
     "IBM",
@@ -284,7 +289,7 @@ export const testimonials = [
     quote:
       "Your workshops have proven to be instrumental in helping me deliver presentations with confidence and poise. After implementing your techniques, presentations have become fun. This workshop helped me become a better representative of the U.S. Postal Service.",
     name: "Elaine W. Conner",
-    role: "Postmaster – United Postal Service",
+    role: "Postmaster – U.S. Postal Service",
   },
   {
     quote:
@@ -306,11 +311,11 @@ export const testimonials = [
 
 export const contact = {
   eyebrow: "Contact",
-  heading: "Tell us what you want to change",
+  heading: "Let’s talk about your goals.",
   intro:
-    "Whether it is a team, one person, or a school, send a note and Nancy will get back to you. DET is based in Birmingham, Alabama and travels for on-site work.",
+    "Whether it is a team, one person or a school, send a note and Nancy will get back to you. Davis Executive Training is based in Birmingham, Alabama and travels for on-site work.",
   form: {
-    submit: "Send Inquiry",
+    submit: "Send inquiry",
     // Deliberately not "team objectives": the form also serves individual
     // coaching and school enquiries, and that label excluded both.
     messageLabel: "What would you like to work on?",
@@ -351,10 +356,10 @@ export const memorial = {
   name: "Eugene Moor “Moe” Davis",
   shortName: "Moe Davis",
   dates: "June 16, 1946 – July 11, 2026",
-  role: "Co-founder, Davis Executive Training",
+  role: "Partner, Davis Executive Training",
 
   intro:
-    "Moe Davis spent his working life convincing people they were more persuasive than they believed. He co-founded Davis Executive Training with his wife, Nancy, and for decades he stood at the front of rooms full of executives and sales teams and taught them how to be heard.",
+    "Moe Davis spent his working life convincing people they were more persuasive than they believed. He worked alongside his wife, Nancy, at Davis Executive Training, and for decades he stood at the front of rooms full of executives and sales teams and taught them how to be heard.",
 
   quote:
     "Experience has convinced me that people who learn to communicate better automatically do a better job of managing and selling.",

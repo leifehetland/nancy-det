@@ -32,7 +32,7 @@ export function Wordmark({
       width={LOGO_W}
       height={LOGO_H}
       priority={priority}
-      sizes="(max-width: 640px) 160px, 220px"
+      sizes="(max-width: 640px) 200px, 300px"
       className={className}
     />
   );
@@ -61,17 +61,17 @@ export default function Logo({
     <Link
       href="/"
       aria-label="Davis Executive Training home"
-      className="flex shrink-0 items-center gap-2.5 2xl:gap-3"
+      className="flex shrink-0 items-center gap-3 lg:gap-4"
     >
       {/* Sized by height, not width, so the mark stays level with the
           divider and the two lines of type beside it. */}
-      <Wordmark priority className="h-12 w-auto sm:h-14" />
-      <span className="hidden h-10 w-px bg-mist-line sm:block" />
+      <Wordmark priority className="h-14 w-auto sm:h-16 lg:h-[68px]" />
+      <span className="hidden h-12 w-px bg-mist-line sm:block lg:h-14" />
       <span className="hidden leading-tight sm:block">
-        <span className="block font-display text-base font-extrabold text-ink">
+        <span className="block font-display text-lg font-extrabold text-ink lg:text-xl">
           Improve Job Performance
         </span>
-        <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-muted">
+        <span className="mt-1 block text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-muted lg:text-xs">
           Public Speaking Mastery
         </span>
       </span>

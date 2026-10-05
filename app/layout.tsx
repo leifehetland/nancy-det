@@ -17,7 +17,7 @@ const archivo = Archivo({
 const siteUrl = "https://www.nancydavisexecutivetraining.com";
 const title = `${site.name} | Executive Communication & Presentation Training`;
 const description =
-  "In-house workshops, one-on-one coaching and student programs in public speaking and presentation skills. Small groups, real practice, and private session recordings you keep.";
+  "In-house workshops, one-on-one coaching and student programs in public speaking and presentation skills. Small groups, real practice, and video playback reviewed together in the room.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

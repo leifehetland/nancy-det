@@ -39,8 +39,8 @@ export default function PrivacyPolicyPage() {
               </h2>
               <p className="mt-4 prose-body">
                 The only information this website collects is what you type into the
-                inquiry form: your name, email address, phone number, optionally your
-                company or organization, which program you are interested in, and
+                inquiry form: your name and email address, optionally your phone number
+                and company or organization, which program you are interested in, and
                 whatever you write in the message field.
               </p>
               <p className="mt-4 prose-body">

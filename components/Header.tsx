@@ -67,8 +67,8 @@ export default function Header() {
           the very top of the page and carries the email, which is currently the
           only contact route. */}
       <div className="bg-ink text-white">
-        <div className="container-x flex items-center justify-between gap-4 py-2 text-xs">
-          <p className="font-semibold tracking-wide text-white/80">
+        <div className="container-x flex items-center justify-between gap-4 py-2 text-xs sm:justify-end">
+          <p className="font-semibold tracking-wide text-white/80 sm:hidden">
             {site.tagline} <span className="text-white/30">·</span>{" "}
             <span className="text-brand-light">{site.subTagline}</span>
           </p>
@@ -95,15 +95,15 @@ export default function Header() {
       <div className="container-x flex items-center justify-between gap-6 py-4">
         <Logo />
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-1.5 lg:flex">
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
               aria-current={active === item.href ? "true" : undefined}
               className={[
-                "relative whitespace-nowrap px-3 py-2 text-sm font-semibold transition-colors",
-                "after:absolute after:inset-x-3 after:-bottom-px after:h-[2px] after:transition-colors",
+                "relative whitespace-nowrap px-3.5 py-2.5 text-[15px] font-semibold transition-colors xl:text-base",
+                "after:absolute after:inset-x-3.5 after:-bottom-px after:h-[3px] after:transition-colors",
                 active === item.href
                   ? "text-brand-dark after:bg-brand"
                   : "text-ink/70 after:bg-transparent hover:text-ink",

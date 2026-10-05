@@ -81,7 +81,7 @@ export default function ContactForm() {
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-6 inline-flex min-h-[44px] items-center justify-center rounded-md border-2 border-success-ink/30 px-6 py-3 text-sm font-bold uppercase tracking-wide text-success-ink transition-colors hover:bg-success-ink hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success-ink"
+          className="mt-6 inline-flex min-h-[44px] items-center justify-center rounded-md border-2 border-success-ink/30 px-6 py-3 text-sm font-bold text-success-ink transition-colors hover:bg-success-ink hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success-ink"
         >
           Send another inquiry
         </button>
@@ -126,12 +126,11 @@ export default function ContactForm() {
           />
         </div>
         <div>
-          <label htmlFor="phone" className={label}>Phone Number *</label>
+          <label htmlFor="phone" className={label}>Phone Number</label>
           <input
             id="phone"
             name="phone"
             type="tel"
-            required
             disabled={busy}
             autoComplete="tel"
             inputMode="tel"

@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="md:col-span-1">
           <Wordmark className="h-auto w-44" />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-slate-body">
-            {site.description}
+            {site.summary}
           </p>
         </div>
 

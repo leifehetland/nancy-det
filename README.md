@@ -29,7 +29,7 @@ lib/
   mailer.ts               Outbound mail adapter
 ```
 
-Page sections, in order: hero, approach, programs, students & schools,
+Page sections, in order: hero, method, programs, students & schools,
 Ducks Unlimited, clients, testimonials, about Nancy, contact. The header nav
 links are in-page anchors; the active one is tracked with an
 IntersectionObserver.

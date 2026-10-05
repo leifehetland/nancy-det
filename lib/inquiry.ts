@@ -55,7 +55,6 @@ export function parseInquiry(
   if (!data.name) return { ok: false, error: "Please enter your name." };
   if (!data.email) return { ok: false, error: "Please enter your email address." };
   if (!EMAIL_RE.test(data.email)) return { ok: false, error: "That email address doesn't look right." };
-  if (!data.phone) return { ok: false, error: "Please enter a phone number." };
 
   for (const [key, limit] of Object.entries(MAX)) {
     if (data[key as keyof typeof MAX].length > limit) {
@@ -73,7 +72,7 @@ export function formatInquiryText(d: InquiryPayload): string {
     "",
     `Name:     ${d.name}`,
     `Email:    ${d.email}`,
-    `Phone:    ${d.phone}`,
+    `Phone:    ${d.phone || "(not given)"}`,
     `Company:  ${d.company || "(not given)"}`,
     `Program:  ${d.program || "(not given)"}`,
     "",

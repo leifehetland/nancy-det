@@ -11,7 +11,7 @@ import { memorial as m } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "In Memoriam",
-  description: `Remembering ${m.shortName}, co-founder of Davis Executive Training. ${m.dates}.`,
+  description: `Remembering ${m.shortName}, partner at Davis Executive Training. ${m.dates}.`,
 };
 
 /**

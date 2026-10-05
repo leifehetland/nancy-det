@@ -5,10 +5,10 @@ import SectionHeading from "@/components/SectionHeading";
 import { Icon } from "@/components/Icons";
 import {
   about,
-  approach,
   clients,
   contact,
   hero,
+  method,
   outcomes,
   programs,
   quoteBand,
@@ -41,10 +41,10 @@ export default function HomePage() {
               {hero.intro}
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a href={hero.primaryCta.href} className="btn-primary normal-case tracking-normal">
+              <a href={hero.primaryCta.href} className="btn-primary">
                 {hero.primaryCta.label}
               </a>
-              <a href={hero.secondaryCta.href} className="btn-ghost normal-case tracking-normal">
+              <a href={hero.secondaryCta.href} className="btn-ghost">
                 {hero.secondaryCta.label}
               </a>
             </div>
@@ -125,7 +125,7 @@ export default function HomePage() {
                 </blockquote>
               </figure>
 
-              <a href={about.cta.href} className="btn-primary mt-8 normal-case tracking-normal">
+              <a href={about.cta.href} className="btn-primary mt-8">
                 {about.cta.label}
               </a>
             </div>
@@ -158,16 +158,16 @@ export default function HomePage() {
       </section>
 
       {/* ============ APPROACH ============ */}
-      <section id="approach" className="scroll-mt-24 bg-mist-light">
+      <section id="method" className="scroll-mt-24 bg-mist-light">
         <div className="container-x py-20 lg:py-24">
           <SectionHeading
-            eyebrow={approach.eyebrow}
-            title={approach.heading}
-            intro={approach.intro}
+            eyebrow={method.eyebrow}
+            title={method.heading}
+            intro={method.intro}
           />
 
           <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-3">
-            {approach.items.map((item) => {
+            {method.items.map((item) => {
               const Glyph = Icon[item.icon];
               return (
                 <div key={item.title}>
@@ -210,38 +210,33 @@ export default function HomePage() {
             intro={programs.intro}
           />
 
-          <div className="mt-14 space-y-6">
+          <div className="mt-14 grid gap-6 lg:grid-cols-3">
             {programs.items.map((p) => {
               const Glyph = Icon[p.icon];
               return (
                 <article
                   key={p.title}
-                  className="grid gap-6 rounded-xl bg-ink p-7 text-white sm:grid-cols-[auto_1fr] sm:gap-8 sm:p-9"
+                  className="flex flex-col rounded-xl border border-mist-line bg-white p-7 shadow-card sm:p-8"
                 >
                   <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-brand text-lg text-white">
                     <Glyph />
                   </span>
-
-                  <div>
-                    <h3 className="font-display text-xl font-extrabold text-white">
-                      {p.title}
-                    </h3>
-                    <p className="mt-1 text-sm font-bold text-brand-light">{p.lead}</p>
-                    <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/70">
-                      {p.text}
-                    </p>
-                    <ul className="mt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6">
-                      {p.points.map((pt) => (
-                        <li
-                          key={pt}
-                          className="flex items-start gap-2 text-xs font-semibold leading-snug text-white/85"
-                        >
-                          <Icon.check className="mt-px shrink-0 text-sm text-brand-light" />
-                          {pt}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <h3 className="mt-6 font-display text-xl font-extrabold text-ink">
+                    {p.title}
+                  </h3>
+                  <p className="mt-1 text-sm font-bold text-brand-dark">{p.lead}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-slate-body">{p.text}</p>
+                  <ul className="mt-6 space-y-2.5 border-t border-mist-line pt-6">
+                    {p.points.map((pt) => (
+                      <li
+                        key={pt}
+                        className="flex items-start gap-2 text-sm font-semibold leading-snug text-ink"
+                      >
+                        <Icon.check className="mt-0.5 shrink-0 text-base text-brand-dark" />
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
                 </article>
               );
             })}
@@ -250,7 +245,7 @@ export default function HomePage() {
       </section>
 
       {/* ============ CLIENTS ============ */}
-      <section className="bg-white">
+      <section className="bg-mist-light">
         <div className="container-x py-20 lg:py-24">
           <SectionHeading
             eyebrow={clients.eyebrow}
@@ -272,7 +267,7 @@ export default function HomePage() {
       </section>
 
       {/* ============ TESTIMONIALS ============ */}
-      <section className="bg-mist-light">
+      <section className="bg-white">
         <div className="container-x py-20 lg:py-24">
           <SectionHeading
             eyebrow={testimonialSection.eyebrow}
@@ -281,12 +276,12 @@ export default function HomePage() {
 
           <div className="mt-12 grid gap-x-12 gap-y-10 lg:grid-cols-2">
             {testimonials.map((t) => (
-              <figure key={t.name} className="rounded-xl border border-mist-line bg-white p-6 sm:p-7">
+              <figure key={t.name} className="flex flex-col rounded-xl border border-mist-line bg-mist-light p-6 sm:p-7">
                 <Icon.quote className="text-2xl text-brand/25" aria-hidden="true" />
                 <blockquote className="mt-3 text-sm italic leading-relaxed text-slate-body">
                   “{t.quote}”
                 </blockquote>
-                <figcaption className="mt-4 flex items-start gap-3 text-sm">
+                <figcaption className="mt-auto flex items-start gap-3 pt-4 text-sm">
                   <span aria-hidden="true" className="mt-2.5 h-px w-6 shrink-0 bg-brand" />
                   <span>
                     <span className="font-bold text-ink">{t.name}</span>
@@ -331,7 +326,7 @@ export default function HomePage() {
       <section className="border-t-4 border-brand bg-white">
         <div className="container-x grid items-center gap-12 py-20 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:py-24">
           <div>
-            <p className="eyebrow">In Memoriam</p>
+            <p className="eyebrow">{about.moe.eyebrow}</p>
             <h2 className="section-title mt-4">{about.moe.heading}</h2>
             <p className="mt-5 max-w-xl prose-body">{about.moe.text}</p>
           </div>
