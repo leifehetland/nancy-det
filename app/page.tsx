@@ -158,7 +158,7 @@ export default function HomePage() {
       </section>
 
       {/* ============ APPROACH ============ */}
-      <section id="method" className="scroll-mt-24 bg-mist-light">
+      <section id="skills" className="scroll-mt-24 bg-mist-light">
         <div className="container-x py-20 lg:py-24">
           <SectionHeading
             eyebrow={method.eyebrow}

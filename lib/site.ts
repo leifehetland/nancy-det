@@ -55,7 +55,7 @@ export const site = {
 /** Anchor targets on the one-page site. Order matches the page. */
 export const nav = [
   { label: "About", href: "#about" },
-  { label: "Method", href: "#method" },
+  { label: "Skills", href: "#skills" },
   { label: "Programs", href: "#programs" },
   { label: "Contact", href: "#contact" },
 ];
@@ -150,7 +150,7 @@ export const about = {
 // ---------------------------------------------------------------------------
 
 export const method = {
-  eyebrow: "How It Works",
+  eyebrow: "Skills You Will Learn",
   heading: "Small groups. Real practice. Skills you use the next day.",
   intro:
     "Your effectiveness depends on your ability to inform, influence, persuade and motivate. Those are skills, and skills can be taught.",
