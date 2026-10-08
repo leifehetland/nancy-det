@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import { site } from "@/lib/site";
 
 // Self-hosted through next/font: no runtime request to Google, no layout shift.
@@ -49,14 +47,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${archivo.variable}`}>
       <body>
-        <a href="#main" className="skip-link">
-          Skip to content
-        </a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
+        {/* Site chrome (header, footer, skip link, main landmark) lives in
+            app/(site)/layout.tsx so /card can render without it. */}
+        {children}
         {/* Structured data. Only facts we can stand behind: no street address,
-            no phone, no price. */}
+            no phone (the one number we have is private, /card only), no
+            price. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

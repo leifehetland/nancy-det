@@ -343,6 +343,15 @@ export default function HomePage() {
               />
             </div>
             <p className="mt-5 text-sm leading-relaxed text-white/65">{about.moe.qrCaption}</p>
+            <a
+              href={about.moe.memorialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex min-h-[44px] items-center justify-center gap-1.5 text-sm font-semibold text-brand-light underline decoration-brand-light/40 underline-offset-4 transition-colors hover:text-white hover:decoration-white/60"
+            >
+              {about.moe.memorialLinkLabel}
+              <Icon.external aria-hidden="true" className="text-xs" />
+            </a>
           </div>
         </div>
       </section>

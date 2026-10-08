@@ -30,7 +30,10 @@ export const site = {
   tagline: "Improve Job Performance",
   subTagline: "Public Speaking Mastery",
 
-  // TODO: real number. Was "(800) 555-DET1" — a fabricated 555 number.
+  // Deliberately null: the only number we have is Nancy's private line, and it
+  // is published on /card alone (see the `card` export). Do NOT lift it up to
+  // here — everything that renders these is conditional, so the public site
+  // simply omits the phone line rather than printing a placeholder.
   phone: null as string | null,
   phoneHref: null as string | null,
 
@@ -139,9 +142,16 @@ export const about = {
     text: "Nancy’s late husband, Eugene Moor “Moe” Davis, helped build this company and its methods over nearly four decades. He passed away in July 2026.",
     // Plain header above the QR code below — no longer a link itself.
     qrHeading: "In Memoriam",
-    qrCaption: "Scan to visit his memorial page",
+    // The QR is only useful to someone holding a SECOND device. Most visitors
+    // are on the phone they would have to scan with, so the plain link below
+    // is the primary route and the code is the convenience.
+    qrCaption: "Scan the code, or use the link below.",
     qrCode: "/images/qr-memorylinks-black.png",
     qrAlt: "QR code to Moe Davis's memorial tribute page",
+    // Decoded from the Memory Links plaque photo, verified to re-encode to the
+    // identical URL.
+    memorialUrl: "https://www.memorylinks.com/code/4083912336",
+    memorialLinkLabel: "Open his memorial page",
   },
 };
 
@@ -407,6 +417,39 @@ export const memorial = {
 // ---------------------------------------------------------------------------
 // Footer
 // ---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
+// Digital business card — /card
+//
+// Unlinked from the site: reachable only by typing or sharing the URL, and
+// marked noindex so it does not surface in search. Mirrors Nancy's email
+// signature (name block with a navy left rule, red italic tagline, then the
+// contact lines) in the site's own type and colour rather than the
+// signature's Georgia/Arial.
+//
+// The phone number lives HERE and nowhere else. It is Nancy's private line,
+// not a business line, so it appears only on the card she hands out by URL.
+// `site.phone` stays null on purpose; do not consolidate the two.
+// ---------------------------------------------------------------------------
+
+export const card = {
+  name: "Nancy Davis",
+  phone: "(205) 706-0975",
+  phoneHref: "tel:+12057060975",
+  role: "Founder, Davis Executive Training",
+  tagline: "Be perceived the way you intend.",
+  logo: "/images/det-logo-smaller.jpg",
+  logoAlt: "Davis Executive Training",
+  websiteLabel: "nancydavisexecutivetraining.com",
+  websiteHref: "https://www.nancydavisexecutivetraining.com",
+  locationLabel: "Birmingham, AL",
+  meta: ["On-site nationwide", "Since 1982"],
+  saveLabel: "Save to contacts",
+  // Generated from these same fields by app/card/vcard/route.ts, so the
+  // download can never drift from what the page displays.
+  vcardHref: "/card/vcard",
+  saveHint: "Adds Nancy to your phone’s address book.",
+};
 
 export const footer = {
   links: nav,
