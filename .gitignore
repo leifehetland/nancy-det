@@ -5,3 +5,7 @@ out
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+
+# Scratch holding pen for files awaiting manual deletion. Never commit:
+# it collects stale .next builds, whose generated .ts files break the build.
+_to_delete
